@@ -7,6 +7,7 @@ import Ebm from "./pages/Ebm";
 import Cultes from "./pages/Cultes";
 import Autres from "./pages/Autres";
 import Layout from "./components/Layout";
+import EbmDetails from "./pages/EbmDetails";
 function App() {
   return (
     /*     <div className="App" style={{ width: "85%" }}>
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/ebm">
             <Ebm />
+          </Route>
+          <Route path="/ebmdetails">
+            <EbmDetails />
           </Route>
           <Route path="/cultes">
             <Cultes />

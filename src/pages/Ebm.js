@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MaterialTable from "material-table";
 import { Typography } from "@material-ui/core";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Ebm = () => {
+  const history = useHistory();
   return (
-    <div style={{ maxWidth: "100%" }}>
+    <>
       <MaterialTable
         columns={[
           {
             title: "Jour/Auteur",
-            field: "Référence",
+            field: "reference",
+            cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
             render: (row) => (
               <div>
                 <Typography variant="small">{row.date}</Typography>{" "}
@@ -21,9 +24,10 @@ const Ebm = () => {
 
           {
             title: "Référence",
-            field: "birthCity",
+            field: "passage",
+            cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
             render: (row) => (
-              <div>
+              <div onClick={() => history.push("/ebmdetails")}>
                 <Typography variant="subtitle2">{row.reference}</Typography>{" "}
                 <Typography noWrap color="primary">
                   {row.passage}
@@ -37,7 +41,7 @@ const Ebm = () => {
             name: "Christian Sabouloulou",
             reference: "Jean 3:16",
             date: "12/07/2021",
-            passage: "Car Dieu a tant aimé le monde ...",
+            passage: "Car Dieu a tant aimé le ...",
           },
           {
             name: "Eric Zola",
@@ -46,9 +50,18 @@ const Ebm = () => {
             passage: "Priez sans cesse",
           },
         ]}
+        options={{
+          rowStyle: (data, index) =>
+            index % 2 === 0 ? { background: "#f5f5f5" } : null,
+          headerStyle: {
+            background: "#3F51B5",
+            fontStyle: "bold",
+            color: "white",
+          },
+        }}
         title=""
       />
-    </div>
+    </>
   );
 };
 

@@ -7,29 +7,38 @@ const Layout = (props) => {
   return (
     <>
       <Navbar />
-      <Paper
-        style={
-          {
-            // width: "100%",
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Paper
+          style={{
+            width: "100%",
             // backgroundColor: "blue",
             //  height: "100vh",
             //    margin: "0.5rem",
-          }
-        }
-      >
-        {props.children}
-      </Paper>
-      <Paper
-        style={{
-          // width: "100%",
-          backgroundColor: "#3F51B5",
-          //backgroundColor: "#010230",
-          //  height: "100vh",
-          marginTop: "0.5rem",
-        }}
-      >
-        <Footer />
-      </Paper>
+          }}
+        >
+          {props.children}
+        </Paper>
+
+        <Paper
+          style={{
+            width: "100%",
+            // backgroundColor: "#3F51B5",
+            backgroundColor: "#3F51B5",
+            //backgroundColor: "#010230",
+            //  height: "100vh",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Footer />
+        </Paper>
+      </div>
     </>
   );
 };
