@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import TextEditor from "./components/TextEditor";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import "./App.css";
+import Home from "./pages/Home";
+import Ebm from "./pages/Ebm";
+import Cultes from "./pages/Cultes";
+import Autres from "./pages/Autres";
+import Layout from "./components/Layout";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    /*     <div className="App" style={{ width: "85%" }}>
+     */ <div
+      className="App"
+      style={{ width: "100%", backgroundColor: "#E7EEF0", height: "100%" }}
+    >
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/ebm">
+            <Ebm />
+          </Route>
+          <Route path="/cultes">
+            <Cultes />
+          </Route>
+          <Route path="/autres">
+            <Autres />
+          </Route>
+          <Route path="/editor">
+            <TextEditor />
+          </Route>
+        </Switch>
+      </Layout>
+      <CssBaseline />
     </div>
   );
 }
