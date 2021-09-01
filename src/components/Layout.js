@@ -8,12 +8,14 @@ const Layout = (props) => {
     <>
       <Navbar />
       <Paper
-        style={{
-          // width: "100%",
-          backgroundColor: "blue",
-          //  height: "100vh",
-          //    margin: "0.5rem",
-        }}
+        style={
+          {
+            // width: "100%",
+            // backgroundColor: "blue",
+            //  height: "100vh",
+            //    margin: "0.5rem",
+          }
+        }
       >
         {props.children}
       </Paper>
