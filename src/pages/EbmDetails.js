@@ -3,29 +3,43 @@ import React from "react";
 
 const EbmDetails = () => {
   return (
-    <Paper>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "start",
+        alignItems: "start",
+        padding: "0.5rem",
+      }}
+    >
+      <div>
+        <span align="left">21/05/2021</span>
+        <br />
+        <strong align="left">Christian Saboukoulou</strong>
+      </div>
+      <br />
+      <br />
       <div
-        stlye={{
-          display: "flex",
-          flexdirection: "row",
-          justifyContent: "start",
-          alignItems: "start",
+        style={{
+          border: "1px solid black",
+          width: "90%",
+          alignSelf: "center",
+          borderRadius: "5px",
+          backgroundColor: "#E6EDEF",
         }}
       >
-        <Typography>21/05/2021</Typography>
-        <Typography>Christian Saboukoulou</Typography>
-      </div>
-      <div>
-        <Typography>Jean 3:16</Typography>
+        <Typography variant="h6">Jean 3:16</Typography>
         <Typography>
           Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que
           quiconque croit en lui ne périsse point, mais qu'il ait la vie
           éternelle.
         </Typography>
       </div>
+      <br />
+      <br />
       <div>
         <main>
-          <Typography paragraph>
+          <Typography paragraph align="left">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
             dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -40,7 +54,7 @@ const EbmDetails = () => {
             consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
             donec massa sapien faucibus et molestie ac.
           </Typography>
-          <Typography paragraph>
+          <Typography paragraph align="left">
             Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
             ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
             elementum integer enim neque volutpat ac tincidunt. Ornare
@@ -57,7 +71,7 @@ const EbmDetails = () => {
           </Typography>
         </main>
       </div>
-    </Paper>
+    </div>
   );
 };
 
