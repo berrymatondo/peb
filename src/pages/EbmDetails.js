@@ -12,20 +12,18 @@ const EbmDetails = () => {
         padding: "0.5rem",
       }}
     >
-      <div>
-        <span align="left">21/05/2021</span>
+      <div align="left">
+        <span>21/05/2021</span>
         <br />
-        <strong align="left">Christian Saboukoulou</strong>
+        <strong>Christian Saboukoulou</strong>
       </div>
       <br />
-      <br />
-      <div
+      <Paper
         style={{
           border: "1px solid black",
-          width: "90%",
           alignSelf: "center",
           borderRadius: "5px",
-          backgroundColor: "#E6EDEF",
+          // backgroundColor: "#E6EDEF",
         }}
       >
         <Typography variant="h6">Jean 3:16</Typography>
@@ -34,25 +32,24 @@ const EbmDetails = () => {
           quiconque croit en lui ne périsse point, mais qu'il ait la vie
           éternelle.
         </Typography>
-      </div>
+      </Paper>
       <br />
-      <br />
-      <div>
+      <Paper style={{ padding: "5px" }}>
         <main>
           <Typography paragraph align="left">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
+            <strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Rhoncus dolor purus non enim praesent elementum facilisis
+            leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+            hendrerit gravida rutrum quisque non tellus. Convallis convallis
+            tellus id interdum velit laoreet id donec ultrices. Odio morbi quis
+            commodo odio aenean sed adipiscing. Amet nisl suscipit adipiscing
+            bibendum est ultricies integer quis. Cursus euismod quis viverra
+            nibh cras. Metus vulputate eu scelerisque felis imperdiet proin
+            fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
+            tincidunt lobortis feugiat vivamus at augue. At augue eget arcu
+            dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi
+            tincidunt. Lorem donec massa sapien faucibus et molestie ac.
           </Typography>
           <Typography paragraph align="left">
             Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
@@ -70,7 +67,7 @@ const EbmDetails = () => {
             ultrices sagittis orci a.
           </Typography>
         </main>
-      </div>
+      </Paper>
     </div>
   );
 };

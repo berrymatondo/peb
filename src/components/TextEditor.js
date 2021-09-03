@@ -8,6 +8,7 @@ import renderHTML from "react-render-html";
 
 const TextEditor = () => {
   const [don, setDon] = useState();
+  const [don1, setDon1] = useState();
   const sendData = () => {
     console.log("DON vat:= ", don);
   };
@@ -25,6 +26,7 @@ const TextEditor = () => {
         onChange={(event, editor) => {
           const data = editor.getData();
           setDon(data);
+          setDon1(renderHTML(data));
           console.log({ event, editor, data });
         }}
         onBlur={(event, editor) => {
@@ -39,7 +41,9 @@ const TextEditor = () => {
       <br />
       {don && <div className="app">{renderHTML(don)}</div>}
       <div>
-        <Preview id={"jsx-template"}> {don}</Preview>
+        {/*         <Preview id={"jsx-template"}> {don}</Preview>
+         */}{" "}
+        <Preview id={"jsx-template"}> {don1}</Preview>
         <button onClick={() => print("a", "jsx-template")}> print</button>
       </div>
     </div>

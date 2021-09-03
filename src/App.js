@@ -8,6 +8,8 @@ import Cultes from "./pages/Cultes";
 import Autres from "./pages/Autres";
 import Layout from "./components/Layout";
 import EbmDetails from "./pages/EbmDetails";
+import Orateurs from "./pages/orateurs/Orateurs";
+import TextEdit from "./components/TextEdit";
 function App() {
   return (
     /*     <div className="App" style={{ width: "85%" }}>
@@ -34,6 +36,12 @@ function App() {
           </Route>
           <Route path="/editor">
             <TextEditor />
+          </Route>
+          <Route path="/orateurs">
+            <Orateurs />
+          </Route>
+          <Route path="/edit">
+            <TextEdit />
           </Route>
         </Switch>
       </Layout>

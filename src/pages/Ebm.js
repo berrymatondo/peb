@@ -11,7 +11,7 @@ const Ebm = () => {
       <MaterialTable
         columns={[
           {
-            title: "Jour/Auteur",
+            title: "Jour/Orateur",
             field: "reference",
             cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
             render: (row) => (
@@ -25,7 +25,11 @@ const Ebm = () => {
           {
             title: "Référence",
             field: "passage",
-            cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
+            cellStyle: {
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              cursor: "pointer",
+            },
             render: (row) => (
               <div onClick={() => history.push("/ebmdetails")}>
                 <Typography variant="subtitle2">{row.reference}</Typography>{" "}

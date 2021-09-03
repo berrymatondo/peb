@@ -15,7 +15,7 @@ const Layout = (props) => {
           alignItems: "center",
         }}
       >
-        <Paper
+        <div
           style={{
             width: "100%",
             // backgroundColor: "blue",
@@ -24,7 +24,7 @@ const Layout = (props) => {
           }}
         >
           {props.children}
-        </Paper>
+        </div>
 
         <Paper
           style={{
