@@ -1,7 +1,31 @@
 import { Paper, Typography } from "@material-ui/core";
-import React from "react";
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import renderHTML from "react-html-parser";
+
+const baseUrl = "http://localhost:9050/peb/resumes/";
 
 const EbmDetails = () => {
+  const { resumeId } = useParams();
+  const [resume, setResume] = useState();
+
+  const getAllCours = async () => {
+    await axios
+      .get(baseUrl + resumeId)
+      .then((res) => {
+        console.log("Resume:=", res.data);
+        setResume(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getAllCours();
+  }, []);
+
   return (
     <div
       style={{
@@ -9,65 +33,64 @@ const EbmDetails = () => {
         flexDirection: "column",
         justifyContent: "start",
         alignItems: "start",
-        padding: "0.5rem",
+        padding: "0.15rem",
       }}
     >
-      <div align="left">
-        <span>21/05/2021</span>
-        <br />
-        <strong>Christian Saboukoulou</strong>
-      </div>
+      {resume && (
+        <div align="left" style={{ color: "white" }}>
+          <span>{resume.date}</span>
+          <br />
+          <strong>
+            {resume.firstname} {resume.lastname}
+          </strong>
+        </div>
+      )}
       <br />
-      <Paper
+      <div
         style={{
-          border: "1px solid black",
           alignSelf: "center",
-          borderRadius: "5px",
-          // backgroundColor: "#E6EDEF",
+          //  width: "80%",
         }}
       >
-        <Typography variant="h6">Jean 3:16</Typography>
-        <Typography>
-          Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que
-          quiconque croit en lui ne périsse point, mais qu'il ait la vie
-          éternelle.
-        </Typography>
-      </Paper>
-      <br />
-      <Paper style={{ padding: "5px" }}>
-        <main>
-          <Typography paragraph align="left">
-            <strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Rhoncus dolor purus non enim praesent elementum facilisis
-            leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-            hendrerit gravida rutrum quisque non tellus. Convallis convallis
-            tellus id interdum velit laoreet id donec ultrices. Odio morbi quis
-            commodo odio aenean sed adipiscing. Amet nisl suscipit adipiscing
-            bibendum est ultricies integer quis. Cursus euismod quis viverra
-            nibh cras. Metus vulputate eu scelerisque felis imperdiet proin
-            fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
-            tincidunt lobortis feugiat vivamus at augue. At augue eget arcu
-            dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi
-            tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph align="left">
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
-        </main>
-      </Paper>
+        {resume && (
+          <Paper
+            style={{
+              border: "1px solid black",
+              alignSelf: "center",
+              borderRadius: "5px",
+              // backgroundColor: "#E6EDEF",
+            }}
+          >
+            <Typography variant="subtitle2">
+              <span style={{ color: "#2E3134", padding: "0.75rem" }}>
+                {resume.category === "ebm" ? resume.reference : resume.theme}
+              </span>
+            </Typography>
+            <Typography>
+              {resume.category === "ebm" ? resume.texte : ""}
+            </Typography>
+          </Paper>
+        )}
+        <br />
+        {resume && (
+          <Paper
+            style={{
+              padding: "5px",
+              border: "1px solid black",
+              alignSelf: "center",
+              borderRadius: "5px",
+              color: "white",
+              backgroundColor: "#2E3134",
+            }}
+          >
+            <main>
+              <Typography paragraph align="left" style={{}}>
+                {renderHTML(resume.message)}
+              </Typography>
+            </main>
+          </Paper>
+        )}
+      </div>
     </div>
   );
 };

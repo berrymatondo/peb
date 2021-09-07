@@ -70,6 +70,7 @@ const AddOrateur = ({ setOpenPopup }) => {
     if (lastname) {
       console.log("lastname:", lastname);
       console.log("firstname:", firstname);
+
       addOrateur();
     }
   };

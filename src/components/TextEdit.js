@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import renderHTML from "react-html-parser";
@@ -6,6 +6,10 @@ import { Preview, print } from "react-html2pdf";
 import { useHistory, useLocation } from "react-router-dom";
 import { Button, Grid, Paper, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const baseUrl = "http://localhost:9050/peb/resumes";
 
@@ -24,23 +28,54 @@ const TextEdit = () => {
   const [date, setDate] = useState("dd/mm/yyyy");
   const [theme, setTheme] = useState("");
   const classes = useStyles();
+  const [cat, setCat] = React.useState("");
+  const [orateur, setOrateur] = useState("");
+  const [orateurs, setOrateurs] = useState([]);
+  const [texte, setTexte] = useState("");
+  const [reference, setReference] = useState("");
+  const [orateurId, setOrateurId] = useState("");
 
   const handleChange = (e, editor) => {
     setData(editor.getData());
     setDataHtml(renderHTML(editor.getData()));
   };
-  const handleSubmit = () => {
-    console.log("handlesubmit");
-    addOrateur();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //console.log("orateur=", orateur);
+    console.log("data:=", data);
+    addResume();
   };
 
+  // Get all orateurs
+  const getAllOrateurs = async () => {
+    await axios
+      // .get(baseUrlCours + promotionId)
+      .get(`http://localhost:9050/peb/orateurs`)
+      .then((res) => {
+        console.log("Liste orateurs", res.data);
+        setOrateurs(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getAllOrateurs();
+  }, []);
+
   // Add new ortaeur
-  const addOrateur = async () => {
+  const addResume = async () => {
     await axios
       .post(baseUrl + "/add", {
         date: date,
         theme: theme,
         message: data,
+        category: cat,
+        texte: texte,
+        reference: reference,
+        orateurId: orateur,
       })
       .then((res) => {
         history.push("/ebm");
@@ -48,6 +83,10 @@ const TextEdit = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleChangeCat = (event) => {
+    setCat(event.target.value);
   };
 
   return (
@@ -80,16 +119,75 @@ const TextEdit = () => {
               variant="outlined"
               value={date}
             />
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">
+                Choisir un orateur
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={orateur}
+                onChange={(e, data) => {
+                  /* setOrateurId(
+                    orateurs.find((ell) => ell.orateurId === e.target.value)
+                      .description
+                  ); 
+ */
+                  setOrateur(e.target.value);
+                }}
+                // error={descriptionError}
+              >
+                {orateurs.map((ye, index) => (
+                  <MenuItem key={ye.orateurId} value={ye.orateurId}>
+                    {ye.firstname} {ye.lastname}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            <TextField
-              onChange={(e) => setTheme(e.target.value)}
-              // className={classes.field}
-              label="Thème"
-              variant="outlined"
-              value={theme}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Catégorie</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={cat}
+                onChange={handleChangeCat}
+              >
+                <MenuItem value="ebm">ebm</MenuItem>
+                <MenuItem value="culte">culte</MenuItem>
+                <MenuItem value="autre">autre</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
-          <Grid item sx={6}></Grid>
+          <Grid item sx={6}>
+            {(cat === "culte" || cat === "autre") && (
+              <TextField
+                onChange={(e) => setTheme(e.target.value)}
+                // className={classes.field}
+                label="Thème"
+                variant="outlined"
+                value={theme}
+              />
+            )}
+            {cat === "ebm" && (
+              <TextField
+                onChange={(e) => setReference(e.target.value)}
+                // className={classes.field}
+                label="Référence"
+                variant="outlined"
+                value={reference}
+              />
+            )}
+            {cat === "ebm" && (
+              <TextField
+                onChange={(e) => setTexte(e.target.value)}
+                // className={classes.field}
+                label="Texte"
+                variant="outlined"
+                value={texte}
+              />
+            )}
+          </Grid>
         </Grid>
 
         <br />
