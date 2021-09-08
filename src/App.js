@@ -44,7 +44,7 @@ function App() {
             <Cultes />
           </Route>
           <Route path="/autres">
-            <Orateurs />
+            <Autres />
           </Route>
           <Route path="/editor">
             <TextEditor />
