@@ -80,8 +80,9 @@ const EbmDetails = () => {
               border: "1px solid black",
               alignSelf: "center",
               borderRadius: "5px",
-              color: "white",
-              backgroundColor: "#2E3134",
+              // color: "white",
+              // backgroundColor: "#2E3134",
+              backgroundColor: "#F5F5F5",
             }}
           >
             <main>
