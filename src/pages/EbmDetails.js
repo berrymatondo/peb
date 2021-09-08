@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import renderHTML from "react-html-parser";
 
-const baseUrl = "http://localhost:9050/peb/resumes/";
+//const baseUrl = "http://localhost:9050/peb/resumes/";
+const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
 
 const EbmDetails = () => {
   const { resumeId } = useParams();

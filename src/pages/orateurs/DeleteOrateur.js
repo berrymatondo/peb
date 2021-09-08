@@ -2,7 +2,8 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import axios from "axios";
 
-const baseUrl = "http://localhost:9050/peb/orateurs";
+//const baseUrl = "http://localhost:9050/peb/orateurs";
+const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 
 const DeleteOrateur = (props) => {
   // Delete cours

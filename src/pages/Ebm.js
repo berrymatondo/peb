@@ -6,7 +6,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import renderHTML from "react-html-parser";
 
-const baseUrl = "http://localhost:9050/peb/resumes/category/";
+//const baseUrl = "http://localhost:9050/peb/resumes/category/";
+const baseUrl = "http://pebback.herokuapp.com/peb/resumes/category/";
 
 const Ebm = () => {
   const history = useHistory();

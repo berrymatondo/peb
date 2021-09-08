@@ -11,7 +11,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const baseUrl = "http://localhost:9050/peb/resumes";
+//const baseUrl = "http://localhost:9050/peb/resumes";
+const baseUrl = "https://pebback.herokuapp.com/peb/resumes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +52,8 @@ const TextEdit = () => {
   const getAllOrateurs = async () => {
     await axios
       // .get(baseUrlCours + promotionId)
-      .get(`http://localhost:9050/peb/orateurs`)
+      // .get(`http://localhost:9050/peb/orateurs`)
+      .get(`https://pebback.herokuapp.com/peb/orateurs`)
       .then((res) => {
         console.log("Liste orateurs", res.data);
         setOrateurs(res.data);
