@@ -63,7 +63,9 @@ const EbmDetails = () => {
             }}
           >
             <Typography variant="subtitle2">
-              <span style={{ color: "#2E3134", padding: "0.75rem" }}>
+              {/*               <span style={{ color: "#2E3134", padding: "0.75rem" }}>
+               */}{" "}
+              <span style={{ color: "#3F51B5", padding: "0.75rem" }}>
                 {resume.category === "ebm" ? resume.reference : resume.theme}
               </span>
             </Typography>
