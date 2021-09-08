@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import { List, ListItem, ListItemText, Paper } from "@material-ui/core";
 import { useHistory, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -65,35 +65,48 @@ const Navbar = () => {
             </Typography> */}
             <Typography
               variant="h6"
-              onClick={() => history.push("/ebm")}
-              className={location.pathname === "/ebm" ? classes.active : null}
-              style={{ padding: "0px 20px", cursor: "pointer" }}
+              //onClick={() => history.push("/ebm")}
+              //  className={location.pathname === "/ebm" ? classes.active : null}
+              //style={{ padding: "0px 20px", cursor: "pointer" }}
             >
-              EBM
-            </Typography>
-            <Typography
-              variant="h6"
-              onClick={() => history.push("/cultes")}
-              className={
-                location.pathname === "/cultes" ? classes.active : null
-              }
-              style={{ padding: "0px 20px", cursor: "pointer" }}
-            >
-              Cultes
-            </Typography>
-            <Typography
-              variant="h6"
-              onClick={() => history.push("/autres")}
-              className={
-                location.pathname === "/autres" ? classes.active : null
-              }
-              style={{ padding: "0px 20px", cursor: "pointer" }}
-            >
-              Autres
+              Platforme d'édification biblique
             </Typography>
           </div>
         </Toolbar>
       </AppBar>
+      <Paper
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          color: "#3F51B5",
+          marginTop: "0.75rem",
+        }}
+      >
+        <Typography
+          variant="h6"
+          onClick={() => history.push("/ebm")}
+          className={location.pathname === "/ebm" ? classes.active : null}
+          style={{ padding: "0px 20px", cursor: "pointer" }}
+        >
+          EBM
+        </Typography>
+        <Typography
+          variant="h6"
+          onClick={() => history.push("/cultes")}
+          className={location.pathname === "/cultes" ? classes.active : null}
+          style={{ padding: "0px 20px", cursor: "pointer" }}
+        >
+          Cultes
+        </Typography>
+        <Typography
+          variant="h6"
+          onClick={() => history.push("/autres")}
+          className={location.pathname === "/autres" ? classes.active : null}
+          style={{ padding: "0px 20px", cursor: "pointer" }}
+        >
+          Autres
+        </Typography>
+      </Paper>
     </div>
   );
 };

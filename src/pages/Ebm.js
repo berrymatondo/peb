@@ -96,6 +96,9 @@ const Ebm = () => {
             background: "#3F51B5",
             fontStyle: "bold",
             color: "white",
+            paging: true,
+            pageSizeOptions: [5, 10],
+            paginationPosition: "left",
           },
         }}
         title=""

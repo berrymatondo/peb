@@ -24,7 +24,7 @@ function App() {
     /*     <div className="App" style={{ width: "85%" }}>
      */ <div
       className="App"
-      style={{ width: "100%", backgroundColor: "#E7EEF0", height: "100%" }}
+      style={{ width: "100%", backgroundColor: "#E7EEF0", height: "100vh" }}
     >
       {/*       Test
       <Kid param1={name} greetPapa={(x) => fromKid(x)} />
