@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import MaterialTable from "material-table";
 import { Typography } from "@material-ui/core";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-import renderHTML from "react-html-parser";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
-const baseUrl = "http://pebback.herokuapp.com/peb/resumes/category/";
+const baseUrl = process.env.REACT_APP_API_RESUMES;
 
 const Ebm = () => {
   const history = useHistory();
   const [resumes, setResumes] = useState([]);
-  const [reload, setReload] = useState(false);
 
   // Get all cours
   const getAllCours = async () => {
@@ -29,18 +26,25 @@ const Ebm = () => {
 
   useEffect(() => {
     getAllCours();
-  }, [reload]);
+  }, []);
 
   return (
     <>
+      <div style={{ color: "white" }}>
+        {process.env.NODE_ENV} - {process.env.REACT_APP_API_RESUMES}
+      </div>
       <MaterialTable
         columns={[
           {
             title: "Jour/Orateur",
             field: "Resumes",
-            cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
+            cellStyle: {
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              cursor: "pointer",
+            },
             render: (row) => (
-              <div>
+              <div onClick={() => history.push("/ebmdetails/" + row.resumeId)}>
                 <Typography variant="small">{row.date}</Typography>{" "}
                 <Typography color="primary">
                   {row.firstname} {row.lastname}
