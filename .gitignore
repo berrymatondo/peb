@@ -14,7 +14,6 @@
 # misc
 .env-cmd.rc
 .env-cmdrc
-.env-cmdrc.json
 .DS_Store
 .env.local
 .env.development.local
