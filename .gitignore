@@ -13,7 +13,6 @@
 
 # misc
 .env-cmd.rc
-.env-cmdrc
 .DS_Store
 .env.local
 .env.development.local
