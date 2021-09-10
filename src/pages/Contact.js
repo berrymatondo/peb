@@ -33,14 +33,12 @@ const Contact = () => {
   };
 
   const handleContact = () => {
-    if (firstname === "" || comments === "") {
-      setShowError(true);
-    }
     console.log("Prénom=", firstname);
     console.log("Commentaires=", comments);
     console.log("baseUrl=", baseUrl);
-
-    addComments();
+    if (firstname === "" || comments === "") {
+      setShowError(true);
+    } else addComments();
   };
 
   const handleClose = (event, reason) => {
@@ -231,7 +229,7 @@ const Contact = () => {
       </Hidden>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <MuiAlert onClose={handleClose} severity="success">
-          This is a success message!
+          Votre commentaire a été enregistré!
         </MuiAlert>
       </Snackbar>
       ;
