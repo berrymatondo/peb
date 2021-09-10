@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
-import {
-  Checkbox,
-  makeStyles,
-  Button,
-  Chip,
-  Switch,
-  Select,
-  MenuItem,
-  FormControl,
-} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { Link } from "react-router-dom";
 import Popupp from "../Popupp";
 import AddOrateur from "./AddOrateur";
 import EditOrateur from "./EditOrateur";
@@ -22,27 +11,10 @@ import DeleteOrateur from "./DeleteOrateur";
 
 // Les colonnes de la table
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    margin: "20px",
-  },
-  active: {
-    /*     backgroundColor: "green",
-     */ color: "green",
-  },
-  cloturee: {
-    /*     backgroundColor: "red",
-      borderRadius: "5px", */
-    color: "red",
-  },
-}));
-
 //const baseUrl = "http://localhost:9050/peb/orateurs";
 const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 
 const Orateurs = () => {
-  const classes = useStyles();
-
   const [orateurs, setOrateurs] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
   const [reload, setReload] = useState(false);

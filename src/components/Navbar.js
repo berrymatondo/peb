@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
-import { List, ListItem, ListItemText, Paper } from "@material-ui/core";
+import { Hidden, List, ListItem, ListItemText, Paper } from "@material-ui/core";
 import { useHistory, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   title: {
     flexGrow: 1,
@@ -42,39 +42,33 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <div className={classes.root} style={{ marginBottom: "20px" }}>
+    <div className={classes.root} style={{ marginBottom: "0.3rem" }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={() => history.push("/")}
-          >
-            <HomeIcon />
-          </IconButton>
-          <div className={classes.title}>
-            {/*             <Typography
-              variant="h6"
+          <Hidden mdUp>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
               onClick={() => history.push("/")}
-              className={location.pathname === "/" ? classes.active : null}
-              style={{ padding: "0px 20px", cursor: "pointer" }}
             >
-              Home
-            </Typography> */}
-            <Typography
-              variant="h6"
-              //onClick={() => history.push("/ebm")}
-              //  className={location.pathname === "/ebm" ? classes.active : null}
-              //style={{ padding: "0px 20px", cursor: "pointer" }}
-            >
-              Platforme d'édification biblique
-            </Typography>
-          </div>
+              <HomeIcon />
+            </IconButton>
+            <div className={classes.title}>
+              <Typography variant="h6">Edification Biblique</Typography>
+            </div>
+          </Hidden>
+          <Hidden smDown>
+            <div>
+              <Typography variant="h6" style={{ paddingLeft: "10rem" }}>
+                Edification Biblique{" "}
+              </Typography>
+            </div>
+          </Hidden>
         </Toolbar>
       </AppBar>
-      <Paper
+      {/*       <Paper
         style={{
           display: "flex",
           justifyContent: "center",
@@ -106,7 +100,7 @@ const Navbar = () => {
         >
           Autres
         </Typography>
-      </Paper>
+      </Paper> */}
     </div>
   );
 };

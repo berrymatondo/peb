@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import React from "react";
 import TextEditor from "./components/TextEditor";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "./App.css";
@@ -11,20 +11,13 @@ import Layout from "./components/Layout";
 import EbmDetails from "./pages/EbmDetails";
 import Orateurs from "./pages/orateurs/Orateurs";
 import TextEdit from "./components/TextEdit";
-import Kid from "./pages/Kid";
 
 function App() {
-  const name = "Michou";
-  const [bonj, setBonj] = useState("");
-
-  const fromKid = (y) => {
-    setBonj(y);
-  };
   return (
     /*     <div className="App" style={{ width: "85%" }}>
      */ <div
       className="App"
-      style={{ width: "100%", backgroundColor: "#E7EEF0", height: "100vh" }}
+      style={{ width: "100%", backgroundColor: "#405764", height: "100vh" }}
     >
       {/*       Test
       <Kid param1={name} greetPapa={(x) => fromKid(x)} />

@@ -31,7 +31,7 @@ const Home = () => {
         alignItems: "center",
       }}
     >
-      <Card>
+      {/*       <Card>
         <CardActionArea>
           <CardMedia
             className={classes.media}
@@ -72,7 +72,7 @@ const Home = () => {
             </Button>
           </div>
         </CardActions>
-      </Card>
+      </Card> */}
     </div>
   );
 };

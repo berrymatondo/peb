@@ -1,17 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  Button,
-  makeStyles,
-  TextField,
-  Paper,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Switch,
-  FormControlLabel,
-} from "@material-ui/core";
+import { Button, makeStyles, TextField, Paper } from "@material-ui/core";
 
 //const baseUrl = "http://localhost:9050/peb/orateurs";
 const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
@@ -42,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EditOrateur = (props) => {
   const classes = useStyles();
-  const [orateurId, setOrateurId] = useState(props.orateur.orateurId);
+  const orateurId = props.orateur.orateurId;
   const [lastname, setLastname] = useState(props.orateur.lastname);
   const [firstname, setFirstname] = useState(props.orateur.firstname);
   /*   const [titleError, setTitleError] = useState(false);
