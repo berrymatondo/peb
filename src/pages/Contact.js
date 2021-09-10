@@ -7,17 +7,24 @@ import {
   Hidden,
   Typography,
   TextField,
+  Snackbar,
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import MuiAlert from "@material-ui/lab/Alert";
+
+const baseUrl = process.env.REACT_APP_API_COMMENTS;
+//const baseUrl = process.env.REACT_APP_API_RESUMES;
 
 const Contact = () => {
   const history = useHistory();
   const [firstname, setFirstname] = useState("");
   const [comments, setComments] = useState("");
   const [showError, setShowError] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const resetForm = () => {
     setFirstname("");
@@ -31,6 +38,33 @@ const Contact = () => {
     }
     console.log("Prénom=", firstname);
     console.log("Commentaires=", comments);
+    console.log("baseUrl=", baseUrl);
+
+    addComments();
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const addComments = async () => {
+    await axios
+      .post(baseUrl + "/add", {
+        comments: comments,
+        firstname: firstname,
+      })
+      .then((res) => {
+        resetForm();
+
+        setOpen(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -96,8 +130,8 @@ const Contact = () => {
                     autoComplete="off"
                   >
                     {showError && (
-                      <div style={{ color: "red" }}>
-                        Le prénom et le commentaire ne peuvent pas être vides
+                      <div style={{ color: "red", paddingBottom: "10px" }}>
+                        Le prénom et le commentaire doivent être remplis
                       </div>
                     )}
                     <TextField
@@ -157,7 +191,6 @@ const Contact = () => {
           </Grid>
         </Grid>
       </Hidden>
-
       <Hidden smDown>
         <Grid container spacing={2} style={{ padding: "10rem" }}>
           <Grid item xs={12} md={4}>
@@ -196,6 +229,12 @@ const Contact = () => {
           </Grid>
         </Grid>
       </Hidden>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <MuiAlert onClose={handleClose} severity="success">
+          This is a success message!
+        </MuiAlert>
+      </Snackbar>
+      ;
     </>
   );
 };
