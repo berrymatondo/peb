@@ -9,12 +9,30 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router-dom";
 
 const Contact = () => {
   const history = useHistory();
+  const [firstname, setFirstname] = useState("");
+  const [comments, setComments] = useState("");
+  const [showError, setShowError] = useState(false);
+
+  const resetForm = () => {
+    setFirstname("");
+    setComments("");
+    setShowError(false);
+  };
+
+  const handleContact = () => {
+    if (firstname === "" || comments === "") {
+      setShowError(true);
+    }
+    console.log("Prénom=", firstname);
+    console.log("Commentaires=", comments);
+  };
+
   return (
     <>
       <Hidden mdUp>
@@ -23,8 +41,10 @@ const Contact = () => {
             style={{ color: "white", display: "flex" }}
             onClick={() => history.push("/")}
           >
-            <ArrowBackIosIcon style={{ paddingLeft: "0.5rem" }} />
-            <span style={{}}>Retour</span>
+            <ArrowBackIosIcon
+              style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+            />
+            <span style={{ fontSize: 15 }}>Retour</span>
           </div>
 
           <strong style={{ flexGrow: "1" }}>
@@ -46,7 +66,7 @@ const Contact = () => {
                 >
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="h6"
                     component="h2"
                     color="primary"
                   >
@@ -54,10 +74,10 @@ const Contact = () => {
                   </Typography>
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="body1"
                     style={{ textAlign: "start" }}
                   >
-                    Vous avez,un commentaire ou une suggestion, faites-le nous
+                    Vous avez un commentaire ou une suggestion, faites-le nous
                     savoir afin d'améliorer cette plateforme et emmener la
                     Parole de Dieu aux quatre coins de terre.
                   </Typography>
@@ -75,11 +95,19 @@ const Contact = () => {
                     noValidate
                     autoComplete="off"
                   >
+                    {showError && (
+                      <div style={{ color: "red" }}>
+                        Le prénom et le commentaire ne peuvent pas être vides
+                      </div>
+                    )}
                     <TextField
                       id="outlined-basic"
                       label="Prénom"
                       variant="outlined"
                       fullWidth
+                      value={firstname}
+                      placeholder="Prénom"
+                      onChange={(e) => setFirstname(e.target.value)}
                     />
                     <br />
 
@@ -88,9 +116,10 @@ const Contact = () => {
                       label="Commentaire/suggestion"
                       multiline
                       rows={4}
-                      defaultValue="..."
+                      value={comments}
                       variant="outlined"
                       fullWidth
+                      onChange={(e) => setComments(e.target.value)}
                     />
                   </form>
                 </CardContent>
@@ -102,10 +131,15 @@ const Contact = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={handleContact}
+                >
                   Envoyer
                 </Button>
-                <Button size="small" color="secondary">
+                <Button size="small" color="secondary" onClick={resetForm}>
                   Effacer
                 </Button>
               </CardActions>
@@ -115,8 +149,10 @@ const Contact = () => {
               style={{ color: "white", display: "flex" }}
               onClick={() => history.push("/")}
             >
-              <ArrowBackIosIcon style={{ paddingLeft: "0.5rem" }} />
-              <span style={{}}>Retour</span>
+              <ArrowBackIosIcon
+                style={{ paddingLeft: "0.5rem", paddingTop: "5px" }}
+              />
+              <span style={{ fontSize: 15, paddingTop: "5px" }}>Retour</span>
             </div>
           </Grid>
         </Grid>

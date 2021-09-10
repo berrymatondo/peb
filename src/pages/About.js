@@ -22,8 +22,10 @@ const About = () => {
             style={{ color: "white", display: "flex" }}
             onClick={() => history.push("/")}
           >
-            <ArrowBackIosIcon style={{ paddingLeft: "0.5rem" }} />
-            <span style={{}}>Retour</span>
+            <ArrowBackIosIcon
+              style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+            />
+            <span style={{ fontSize: 15 }}>Retour</span>
           </div>
 
           <strong style={{ flexGrow: "1" }}>
@@ -45,7 +47,7 @@ const About = () => {
                 >
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="h6"
                     component="h2"
                     color="primary"
                   >
@@ -53,7 +55,7 @@ const About = () => {
                   </Typography>
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="body1"
                     style={{ textAlign: "start" }}
                   >
                     Etant appelés à manifester nos dons et nos talents que le
@@ -63,14 +65,14 @@ const About = () => {
                     entier.
                   </Typography>
                   <br />
-                  <Typography variant="body2" style={{ textAlign: "start" }}>
+                  <Typography variant="body1" style={{ textAlign: "start" }}>
                     Le but de cette plateforme n'est pas de juste nous limiter à
                     lire les différents résumés, mais de nous pousser à aller
                     encore plus loin, creuser, méditer et vivre la Parole de
                     Dieu.
                   </Typography>
                   <br />
-                  <Typography variant="body2" style={{ textAlign: "start" }}>
+                  <Typography variant="body1" style={{ textAlign: "start" }}>
                     Vos conseils et suggestions sont les beinvenus. N'hésitez
                     pas à nous{" "}
                     <strong
@@ -82,18 +84,20 @@ const About = () => {
                     pour cela.
                   </Typography>
                   <br />
-                  <Typography variant="body2">
+                  <Typography variant="body1">
                     Un amoureux de la Parole de Dieu.
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
             <div
-              style={{ color: "white", display: "flex" }}
+              style={{ color: "white", display: "flex", paddingTop: "5px" }}
               onClick={() => history.push("/")}
             >
-              <ArrowBackIosIcon style={{ paddingLeft: "0.5rem" }} />
-              <span style={{}}>Retour</span>
+              <ArrowBackIosIcon
+                style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+              />
+              <span style={{ fontSize: 15 }}>Retour</span>
             </div>
           </Grid>
         </Grid>

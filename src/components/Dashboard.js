@@ -14,7 +14,9 @@ const Dashboard = () => {
   return (
     <>
       <Hidden mdUp>
-        <div style={{ color: "white" }}>Plateforme d'Edification Biblique</div>
+        <div style={{ color: "white", fontSize: 15 }}>
+          Plateforme d'Edification Biblique
+        </div>
         <Grid container spacing={1} style={{ paddingTop: "0.5rem" }}>
           <Grid item xs={12} md={4}>
             <Card style={{}}>
@@ -26,11 +28,13 @@ const Dashboard = () => {
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
                     backgroundColor: "#f0f0f0",
+                    paddingBottom: "0px",
+                    paddingTop: "1px",
                   }}
                 >
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="h6"
                     component="h2"
                     color="primary"
                   >
@@ -38,7 +42,7 @@ const Dashboard = () => {
                   </Typography>
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="body1"
                     style={{ textAlign: "start" }}
                   >
                     Cette rubrique donne accès aux résumés (non officels) de
@@ -64,11 +68,14 @@ const Dashboard = () => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
+                    backgroundColor: "#f0f0f0",
+                    paddingBottom: "0px",
+                    paddingTop: "1px",
                   }}
                 >
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="h6"
                     component="h2"
                     color="primary"
                   >
@@ -76,13 +83,13 @@ const Dashboard = () => {
                   </Typography>
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="body1"
                     style={{ textAlign: "start" }}
                   >
                     Dans cette rubrique, vous trouverez les résumés (non
                     officels) de différentes prédications qui ont eu lieu lors
                     des cultes dominicaux au sein de la famille Impact Centre
-                    Chrétien (Principale Boissy et Bruxelles).
+                    Chrétien.
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -103,11 +110,14 @@ const Dashboard = () => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
+                    backgroundColor: "#f0f0f0",
+                    paddingBottom: "0px",
+                    paddingTop: "1px",
                   }}
                 >
                   <Typography
                     gutterBottom
-                    variant="h5"
+                    variant="h6"
                     component="h2"
                     color="primary"
                   >
@@ -115,7 +125,7 @@ const Dashboard = () => {
                   </Typography>
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="body1"
                     style={{ textAlign: "start" }}
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
