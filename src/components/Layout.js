@@ -29,9 +29,9 @@ const Layout = (props) => {
             //    margin: "0.5rem",
           }}
         >
-          {/*           {props.children}
+          {props.children}
+          {/*           <Dashboard />
            */}{" "}
-          <Dashboard />
         </div>
 
         <Paper

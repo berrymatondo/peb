@@ -11,13 +11,16 @@ import Layout from "./components/Layout";
 import EbmDetails from "./pages/EbmDetails";
 import Orateurs from "./pages/orateurs/Orateurs";
 import TextEdit from "./components/TextEdit";
+import About from "./pages/About";
+import Dashboard from "./components/Dashboard";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
     /*     <div className="App" style={{ width: "85%" }}>
      */ <div
       className="App"
-      style={{ width: "100%", backgroundColor: "#405764", height: "100vh" }}
+      style={{ width: "100%", backgroundColor: "#10035c", height: "100vh" }}
     >
       {/*       Test
       <Kid param1={name} greetPapa={(x) => fromKid(x)} />
@@ -25,7 +28,7 @@ function App() {
       <Layout>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Dashboard />
           </Route>
           <Route path="/ebm">
             <Ebm />
@@ -47,6 +50,12 @@ function App() {
           </Route>
           <Route path="/edit">
             <TextEdit />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
         </Switch>
       </Layout>

@@ -34,17 +34,16 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    Etudes Bibliques du Midi
+                    <strong>Etudes Bibliques du Midi</strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body2"
                     style={{ textAlign: "start" }}
                   >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica.logdsfqf qfd qsdf sqd fsq f Cette rubriques donne
-                    accès aux résumés de différentes
+                    Cette rubrique donne accès aux résumés (non officels) de
+                    différentes des études bibliques réalisées au sein d'Impact
+                    Centre Chrétien Bruxelles.
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -73,16 +72,17 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    Cultes ICC
+                    <strong>Cultes ICC</strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body2"
                     style={{ textAlign: "start" }}
                   >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica.logdsfqf qfd qsdf sqd fsq f
+                    Dans cette rubrique, vous trouverez les résumés (non
+                    officels) de différentes prédications qui ont eu lieu lors
+                    des cultes dominicaux au sein de la famille Impact Centre
+                    Chrétien (Principale Boissy et Bruxelles).
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -111,16 +111,16 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    Autres résumés
+                    <strong>Autres résumés</strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body2"
                     style={{ textAlign: "start" }}
                   >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica.logdsfqf qfd qsdf sqd fsq f
+                    Vous retrouverez ici d'autres résumés (non officels) de
+                    différentes exhortations au sein de la famille Impact Centre
+                    Chrétien. Exemple: Méga Icmpact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>

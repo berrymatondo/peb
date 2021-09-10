@@ -22,14 +22,14 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <div
+    <
       // className={classes.root}
-      style={{
+      /*       style={{
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-      }}
+      }} */
     >
       {/*       <Card>
         <CardActionArea>
@@ -73,7 +73,7 @@ const Home = () => {
           </div>
         </CardActions>
       </Card> */}
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,9 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const Footer = () => {
+  const history = useHistory();
   return (
     <div
       style={{
@@ -17,6 +19,7 @@ const Footer = () => {
         style={{
           color: "white",
         }}
+        onClick={() => history.push("/about")}
       >
         A Propos
       </Button>
@@ -25,6 +28,7 @@ const Footer = () => {
         style={{
           color: "white",
         }}
+        onClick={() => history.push("/contact")}
       >
         Nous contacter
       </Button>
