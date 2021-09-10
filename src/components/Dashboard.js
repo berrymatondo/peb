@@ -9,8 +9,10 @@ import {
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
+  const history = useHistory();
   return (
     <>
       <Hidden mdUp>
@@ -52,7 +54,12 @@ const Dashboard = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={() => history.push("/ebm")}
+                >
                   Voir les résumés
                 </Button>
               </CardActions>

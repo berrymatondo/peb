@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import renderHTML from "react-html-parser";
+import { useHistory } from "react-router-dom";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/";
 const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
 
 const EbmDetails = () => {
+  const history = useHistory();
   const { resumeId } = useParams();
   const [resume, setResume] = useState();
 
@@ -37,6 +40,22 @@ const EbmDetails = () => {
         padding: "0.15rem",
       }}
     >
+      <div style={{ color: "white", display: "flex" }}>
+        <div
+          style={{ color: "white", display: "flex", paddingBottom: "0.5rem" }}
+          onClick={() => history.push("/ebm")}
+        >
+          <ArrowBackIosIcon
+            style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+          />
+          <span style={{ fontSize: 15 }}>Retour</span>
+        </div>
+
+        {/*        <strong style={{ flexGrow: "1", alignSelf: "flex-end" }}>
+          Plateforme d'Edification Biblique
+        </strong> */}
+      </div>
+
       {resume && (
         <div align="left" style={{ color: "white" }}>
           <span>{resume.date}</span>

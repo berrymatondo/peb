@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import { Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
 const baseUrl = process.env.REACT_APP_API_RESUMES;
@@ -30,8 +31,23 @@ const Ebm = () => {
 
   return (
     <>
-      <div style={{ color: "white" }}>
+      {/* <div style={{ color: "white" }}>
         {process.env.NODE_ENV} - {process.env.REACT_APP_API_RESUMES}
+      </div> */}
+      <div style={{ color: "white", display: "flex" }}>
+        <div
+          style={{ color: "white", display: "flex" }}
+          onClick={() => history.push("/")}
+        >
+          <ArrowBackIosIcon
+            style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+          />
+          <span style={{ fontSize: 15 }}>Retour</span>
+        </div>
+
+        <strong style={{ flexGrow: "1" }}>
+          Plateforme d'Edification Biblique
+        </strong>
       </div>
       <MaterialTable
         columns={[
