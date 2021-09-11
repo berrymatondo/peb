@@ -11,8 +11,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const baseUrl = "http://localhost:9050/peb/resumes";
+//const baseUrl = "http://localhost:9050/peb/resumes";
 //const baseUrl = "https://pebback.herokuapp.com/peb/resumes";
+const baseUrl = process.env.REACT_APP_API_RESUMES;
+const baseUrlOrateurs = process.env.REACT_APP_API_ORATEURS;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +54,8 @@ const TextEdit = () => {
   const getAllOrateurs = async () => {
     await axios
       // .get(baseUrlCours + promotionId)
-      .get(`http://localhost:9050/peb/orateurs`)
+      .get(baseUrlOrateurs)
+      //.get(`http://localhost:9050/peb/orateurs`)
       //.get(`https://pebback.herokuapp.com/peb/orateurs`)
       .then((res) => {
         console.log("Liste orateurs", res.data);

@@ -12,7 +12,8 @@ import DeleteOrateur from "./DeleteOrateur";
 // Les colonnes de la table
 
 //const baseUrl = "http://localhost:9050/peb/orateurs";
-const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
+//const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
+const baseUrl = process.env.REACT_APP_API_ORATEURS;
 
 const Orateurs = () => {
   const [orateurs, setOrateurs] = useState([]);

@@ -48,8 +48,11 @@ const Dashboard = () => {
                     style={{ textAlign: "start" }}
                   >
                     Cette rubrique donne accès aux résumés (non officels) de
-                    différentes études bibliques réalisées au sein d'Impact
-                    Centre Chrétien Bruxelles pendant les heures de midi.
+                    différentes études bibliques réalisées au sein d'
+                    <a target="_blank" href="https://impactcentrechretien.com/">
+                      Impact Centre Chrétien
+                    </a>{" "}
+                    Bruxelles pendant les heures de midi.
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -95,8 +98,11 @@ const Dashboard = () => {
                   >
                     Dans cette rubrique, vous trouverez les résumés (non
                     officels) de différentes prédications qui ont eu lieu lors
-                    des cultes dominicaux au sein de la famille Impact Centre
-                    Chrétien.
+                    des cultes dominicaux au sein de la famille{" "}
+                    <a target="_blank" href="https://impactcentrechretien.com/">
+                      Impact Centre Chrétien
+                    </a>
+                    .
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -141,8 +147,11 @@ const Dashboard = () => {
                     style={{ textAlign: "start" }}
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
-                    différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Impact conférence, ...
+                    différentes exhortations au sein de la famille{" "}
+                    <a target="_blank" href="https://impactcentrechretien.com/">
+                      Impact Centre Chrétien
+                    </a>
+                    . Exemple: Méga Impact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>
