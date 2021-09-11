@@ -92,7 +92,9 @@ const TextEdit = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", padding: "10rem" }}>
+    <Paper
+      style={{ display: "flex", flexDirection: "column", padding: "10rem" }}
+    >
       <div>
         <Preview id={"jsx-template"}> {dataHtml}</Preview>
         <button
@@ -220,7 +222,7 @@ const TextEdit = () => {
       <div>{dataHtml} </div>
       <br />
       <br />
-    </div>
+    </Paper>
   );
 };
 

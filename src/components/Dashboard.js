@@ -101,7 +101,12 @@ const Dashboard = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={() => history.push("/cultes")}
+                >
                   Voir les résumés
                 </Button>
               </CardActions>
@@ -137,12 +142,17 @@ const Dashboard = () => {
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
                     différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Icmpact conférence, ...
+                    Chrétien. Exemple: Méga Impact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={() => history.push("/autres")}
+                >
                   Voir les résumés
                 </Button>
               </CardActions>
@@ -246,7 +256,12 @@ const Dashboard = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={() => history.push("/cultes")}
+                >
                   Voir les résumés
                 </Button>
               </CardActions>
@@ -282,12 +297,17 @@ const Dashboard = () => {
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
                     différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Icmpact conférence, ...
+                    Chrétien. Exemple: Méga Impact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={() => history.push("/autres")}
+                >
                   Voir les résumés
                 </Button>
               </CardActions>
@@ -323,7 +343,7 @@ const Dashboard = () => {
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
                     différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Icmpact conférence, ...
+                    Chrétien. Exemple: Méga Impact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -355,7 +375,7 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Autres résumés</strong>
+                    <strong>Espace Admin</strong>
                   </Typography>
                   <Typography
                     gutterBottom
@@ -364,7 +384,7 @@ const Dashboard = () => {
                   >
                     Vous retrouverez ici d'autres résumés (non officels) de
                     différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Icmpact conférence, ...
+                    Chrétien. Exemple: Méga Impact conférence, ...
                   </Typography>
                 </CardContent>
               </CardActionArea>

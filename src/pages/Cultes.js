@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import MaterialTable from "material-table";
 import { Typography } from "@material-ui/core";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-import renderHTML from "react-html-parser";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-const baseUrl = "http://localhost:9050/peb/resumes/category/";
+//const baseUrl = "http://localhost:9050/peb/resumes/category/";
+const baseUrl = process.env.REACT_APP_API_RESUMES;
 
 const Cultes = () => {
   const history = useHistory();
   const [resumes, setResumes] = useState([]);
-  const [reload, setReload] = useState(false);
 
   // Get all cours
   const getAllCours = async () => {
@@ -28,18 +27,44 @@ const Cultes = () => {
 
   useEffect(() => {
     getAllCours();
-  }, [reload]);
+  }, []);
 
   return (
     <>
+      {/* <div style={{ color: "white" }}>
+        {process.env.NODE_ENV} - {process.env.REACT_APP_API_RESUMES}
+      </div> */}
+      <div style={{ color: "white", display: "flex" }}>
+        <div
+          style={{ color: "white", display: "flex", cursor: "pointer" }}
+          onClick={() => history.push("/")}
+        >
+          <ArrowBackIosIcon
+            style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+          />
+          <span style={{ fontSize: 15 }}>Retour</span>
+        </div>
+
+        <strong style={{ flexGrow: "1" }}>
+          Plateforme d'Edification Biblique
+        </strong>
+      </div>
       <MaterialTable
+        style={{
+          paddingLeft: "0.25rem",
+          paddingRight: "0.25rem",
+        }}
         columns={[
           {
             title: "Jour/Orateur",
             field: "Resumes",
-            cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
+            cellStyle: {
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              cursor: "pointer",
+            },
             render: (row) => (
-              <div>
+              <div onClick={() => history.push("/ebmdetails/" + row.resumeId)}>
                 <Typography variant="small">{row.date}</Typography>{" "}
                 <Typography color="primary">
                   {row.firstname} {row.lastname}
@@ -50,7 +75,7 @@ const Cultes = () => {
 
           {
             title: "Thème",
-            field: "theme",
+            field: "message",
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
@@ -95,6 +120,9 @@ const Cultes = () => {
             background: "#3F51B5",
             fontStyle: "bold",
             color: "white",
+            paging: true,
+            pageSizeOptions: [5, 10],
+            paginationPosition: "left",
           },
         }}
         title=""

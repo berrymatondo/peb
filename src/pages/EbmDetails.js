@@ -48,7 +48,7 @@ const EbmDetails = () => {
             paddingBottom: "0.5rem",
             cursor: "pointer",
           }}
-          onClick={() => history.push("/ebm")}
+          onClick={() => history.goBack()}
         >
           <ArrowBackIosIcon
             style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}

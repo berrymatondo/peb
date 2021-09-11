@@ -71,7 +71,7 @@ const Contact = () => {
         <div style={{ color: "white", display: "flex" }}>
           <div
             style={{ color: "white", display: "flex" }}
-            onClick={() => history.push("/")}
+            onClick={() => history.goBack("/")}
           >
             <ArrowBackIosIcon
               style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
@@ -179,7 +179,7 @@ const Contact = () => {
 
             <div
               style={{ color: "white", display: "flex" }}
-              onClick={() => history.push("/")}
+              onClick={() => history.goBack("/")}
             >
               <ArrowBackIosIcon
                 style={{ paddingLeft: "0.5rem", paddingTop: "5px" }}
