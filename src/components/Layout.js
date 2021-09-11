@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import React from "react";
 import Dashboard from "./Dashboard";
@@ -19,21 +19,40 @@ const Layout = (props) => {
           //backgroundColor: "red",
         }}
       >
-        <div
-          container
-          style={{
-            width: "100%",
-            //  backgroundColor: "green",
-            flexGrow: "1",
-            //  height: "100vh",
-            //    margin: "0.5rem",
-          }}
-        >
-          {props.children}
-          {/*           <Dashboard />
-           */}{" "}
-        </div>
-
+        <Hidden mdUp>
+          <div
+            container
+            style={{
+              width: "100%",
+              //  backgroundColor: "green",
+              // flexGrow: "1",
+              //  height: "100vh",
+              //    margin: "0.5rem",
+            }}
+          >
+            {props.children}
+            {/*           <Dashboard />
+             */}{" "}
+          </div>
+        </Hidden>
+        {/* Large screens
+         */}{" "}
+        <Hidden smDown>
+          <div
+            container
+            style={{
+              width: "85%",
+              //  backgroundColor: "green",
+              // flexGrow: "1",
+              //  height: "100vh",
+              //    margin: "0.5rem",
+            }}
+          >
+            {props.children}
+            {/*           <Dashboard />
+             */}{" "}
+          </div>
+        </Hidden>
         <Paper
           style={{
             width: "100%",

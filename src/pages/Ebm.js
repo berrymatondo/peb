@@ -36,7 +36,7 @@ const Ebm = () => {
       </div> */}
       <div style={{ color: "white", display: "flex" }}>
         <div
-          style={{ color: "white", display: "flex" }}
+          style={{ color: "white", display: "flex", cursor: "pointer" }}
           onClick={() => history.push("/")}
         >
           <ArrowBackIosIcon
@@ -50,6 +50,10 @@ const Ebm = () => {
         </strong>
       </div>
       <MaterialTable
+        style={{
+          paddingLeft: "0.25rem",
+          paddingRight: "0.25rem",
+        }}
         columns={[
           {
             title: "Jour/Orateur",

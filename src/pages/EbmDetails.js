@@ -42,7 +42,12 @@ const EbmDetails = () => {
     >
       <div style={{ color: "white", display: "flex" }}>
         <div
-          style={{ color: "white", display: "flex", paddingBottom: "0.5rem" }}
+          style={{
+            color: "white",
+            display: "flex",
+            paddingBottom: "0.5rem",
+            cursor: "pointer",
+          }}
           onClick={() => history.push("/ebm")}
         >
           <ArrowBackIosIcon
@@ -104,6 +109,13 @@ const EbmDetails = () => {
               // color: "white",
               // backgroundColor: "#2E3134",
               backgroundColor: "#F5F5F5",
+              //height: "400px",
+
+              // width: "500px",
+              height: "400px",
+              overflowX: "hidden",
+              overflowY: "auto",
+              textAlign: "justify",
             }}
           >
             <main>
