@@ -7,7 +7,8 @@ import { useHistory } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/";
-const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
+//const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
+const baseUrl = process.env.REACT_APP_API_RESUMES_ADD;
 
 const EbmDetails = () => {
   const history = useHistory();

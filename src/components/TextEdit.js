@@ -13,7 +13,7 @@ import Select from "@material-ui/core/Select";
 
 //const baseUrl = "http://localhost:9050/peb/resumes";
 //const baseUrl = "https://pebback.herokuapp.com/peb/resumes";
-const baseUrl = process.env.REACT_APP_API_RESUMES;
+const baseUrl = process.env.REACT_APP_API_RESUMES_ADD;
 const baseUrlOrateurs = process.env.REACT_APP_API_ORATEURS;
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +46,8 @@ const TextEdit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log("orateur=", orateur);
-    console.log("data:=", data);
+    //console.log("data:=", data);
+    console.log("baseUrl=", baseUrl);
     addResume();
   };
 
@@ -73,7 +74,7 @@ const TextEdit = () => {
   // Add new ortaeur
   const addResume = async () => {
     await axios
-      .post(baseUrl + "/add", {
+      .post(baseUrl + "add", {
         date: date,
         theme: theme,
         message: data,
@@ -83,7 +84,7 @@ const TextEdit = () => {
         orateurId: orateur,
       })
       .then((res) => {
-        history.push("/ebm");
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -211,7 +212,7 @@ const TextEdit = () => {
           <Button color="primary" variant="contained" type="submit">
             Confirmer
           </Button>
-          <Button onClick={() => history.push("/ebm")} color="secondary">
+          <Button onClick={() => history.push("/")} color="secondary">
             Annuler
           </Button>
         </div>
