@@ -1,10 +1,13 @@
-import { Paper, Typography } from "@material-ui/core";
+import { Hidden, Paper, Typography } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import renderHTML from "react-html-parser";
 import { useHistory } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { Preview, print } from "react-html2pdf";
+import { Button } from "@material-ui/core";
+import GetAppIcon from "@material-ui/icons/GetApp";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/";
 //const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
@@ -41,7 +44,15 @@ const EbmDetails = () => {
         padding: "0.15rem",
       }}
     >
-      <div style={{ color: "white", display: "flex" }}>
+      <div
+        style={{
+          color: "white",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
         <div
           style={{
             color: "white",
@@ -60,6 +71,40 @@ const EbmDetails = () => {
         {/*        <strong style={{ flexGrow: "1", alignSelf: "flex-end" }}>
           Plateforme d'Edification Biblique
         </strong> */}
+
+        {/*  {resume && (
+          <Hidden xsUp>
+            <span>Test 1</span>
+            <Preview id={"jsx-template"}> {renderHTML(resume.message)}</Preview>
+            <span>Test 1</span>
+          </Hidden>
+        )} */}
+        {resume && (
+          /*           <Button
+            color="secondary"
+            onClick={() => {
+              print("a", "jsx-template");
+
+            }}
+          >
+            {" "}
+            Télécharger pdf
+          </Button> */
+          <div
+            onClick={() => {
+              print("a", "jsx-template");
+            }}
+            style={{ marginRight: "5px", cursor: "pointer" }}
+          >
+            <div>
+              <GetAppIcon
+                size="large"
+                style={{ color: "yellow", MarginTop: "30px" }}
+              />{" "}
+            </div>
+            <span style={{ marginBottom: "15px" }}>Télécharger pdf</span>
+          </div>
+        )}
       </div>
 
       {resume && (
@@ -120,7 +165,13 @@ const EbmDetails = () => {
             }}
           >
             <main>
-              <Typography paragraph align="left" style={{}}>
+              <Typography
+                paragraph
+                align="left"
+                // style={{ fontSize: "12pt" }}
+                id={"jsx-template"}
+                //  style={{ paddingRight: "50%", paddingLeft: "10px" }}
+              >
                 {renderHTML(resume.message)}
               </Typography>
             </main>
