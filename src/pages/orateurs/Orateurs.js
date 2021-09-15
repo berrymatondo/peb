@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import EditIcon from "@material-ui/icons/Edit";
@@ -8,6 +8,8 @@ import Popupp from "../Popupp";
 import AddOrateur from "./AddOrateur";
 import EditOrateur from "./EditOrateur";
 import DeleteOrateur from "./DeleteOrateur";
+import { useLocation } from "react-router-dom";
+import { UserContext } from "../USerContext";
 
 // Les colonnes de la table
 
@@ -22,6 +24,8 @@ const Orateurs = () => {
   const [title, setTitle] = useState("");
   const [typact, setTypact] = useState("");
   const [selectedOrateur, setSelectedOrateur] = useState("");
+  const location = useLocation();
+  const { user, setUser, tok, setTok } = useContext(UserContext);
 
   const reloadAndClose = () => {
     setOpenPopup(false);
@@ -31,7 +35,9 @@ const Orateurs = () => {
   // Get all orateurs
   const getOrateurs = async () => {
     await axios
-      .get(baseUrl)
+      .get(baseUrl, {
+        headers: { Authorization: `Bearer ${location.state.token}` },
+      })
       .then((res) => {
         console.log("Orateurs:=", res.data);
         setOrateurs(res.data);
@@ -42,6 +48,7 @@ const Orateurs = () => {
   };
 
   useEffect(() => {
+    console.log("TOKEN orateurs:=", location.state.token);
     getOrateurs();
   }, [reload]);
 

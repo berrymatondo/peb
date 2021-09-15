@@ -177,6 +177,16 @@ const EbmDetails = () => {
             </main>
           </Paper>
         )}
+
+        <form
+          action="https://v2.convertapi.com/convert/docx/to/pdf?Secret=<YOUR SECRET HERE>&download=attachment"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="file" name="File" />
+          <input type="hidden" name="StoreFile" value="true" />
+          <input type="submit" value="Convert file" />
+        </form>
       </div>
     </div>
   );

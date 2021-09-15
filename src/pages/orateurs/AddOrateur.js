@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, makeStyles, TextField, Paper } from "@material-ui/core";
+import { useLocation } from "react-router-dom";
 
 //const baseUrl = "http://localhost:9050/peb/orateurs";
 //const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
@@ -34,6 +35,8 @@ const AddOrateur = ({ setOpenPopup }) => {
   const classes = useStyles();
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
+  const location = useLocation();
+
   /*   const [promotionStatus, setPromotionStatus] = useState(false);
   const [titleError, setTitleError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
@@ -42,10 +45,16 @@ const AddOrateur = ({ setOpenPopup }) => {
   // Add new ortaeur
   const addOrateur = async () => {
     await axios
-      .post(baseUrl + "/add", {
-        lastname: lastname,
-        firstname: firstname,
-      })
+      .post(
+        baseUrl + "add",
+        {
+          lastname: lastname,
+          firstname: firstname,
+        },
+        {
+          headers: { Authorization: `Bearer ${location.state.token}` },
+        }
+      )
       .then((res) => {
         setOpenPopup(false);
       })

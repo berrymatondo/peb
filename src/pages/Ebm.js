@@ -4,6 +4,7 @@ import { Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { useLocation } from "react-router-dom";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
 const baseUrl = process.env.REACT_APP_API_RESUMES;
@@ -11,11 +12,16 @@ const baseUrl = process.env.REACT_APP_API_RESUMES;
 const Ebm = () => {
   const history = useHistory();
   const [resumes, setResumes] = useState([]);
+  const location = useLocation();
 
   // Get all cours
   const getAllCours = async () => {
     await axios
-      .get(baseUrl + "ebm")
+      .get(
+        baseUrl + "ebm" /* , {
+        headers: { Authorization: `Bearer ${location.state.token}` },
+      } */
+      )
       .then((res) => {
         console.log("Resumes:=", res.data);
         setResumes(res.data);
@@ -26,6 +32,9 @@ const Ebm = () => {
   };
 
   useEffect(() => {
+    console.log(location.pathname); // result: '/secondpage'
+    console.log(location.search); // result: '?query=abc'
+    //console.log(location.state.token); // result: 'some_value'
     getAllCours();
   }, []);
 

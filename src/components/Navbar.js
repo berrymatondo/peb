@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,6 +9,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Hidden, List, ListItem, ListItemText, Paper } from "@material-ui/core";
 import { useHistory, useLocation } from "react-router-dom";
+import { UserContext } from "../pages/USerContext";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +42,22 @@ const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
+  const { user, setUser, tok, setTok } = useContext(UserContext);
+
+  const handleConnexion = () => {
+    if (user) {
+      setUser("");
+      setTok("");
+      history.push("/");
+    } else {
+      history.push("/signup");
+    }
+  };
 
   return (
     <div className={classes.root} style={{ marginBottom: "0.3rem" }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Hidden mdUp>
             <IconButton
               edge="start"
@@ -56,14 +69,77 @@ const Navbar = () => {
               <HomeIcon />
             </IconButton>
             <div className={classes.title}>
-              <Typography variant="h6">Edification Biblique</Typography>
+              <Typography variant="body1">Edification Biblique</Typography>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {user ? (
+                <span
+                  style={{
+                    color: "white",
+                    marginRight: "0.2rem",
+                    paddingRight: "10px",
+                  }}
+                >
+                  Bonjour {user}
+                </span>
+              ) : (
+                /*   <div
+                  // variant="outlined"
+                  style={{ color: "white", marginRight: "0.2rem" }}
+                  onClick={() => history.push("/login")}
+                >
+                  Se Connecter
+                </div> */
+
+                <ExitToAppIcon
+                  onClick={() => history.push("/login")}
+                  style={{ color: "lightgreen" }}
+                />
+              )}
+
+              {/* <div
+                style={{ color: user ? "red" : "white" }}
+                onClick={handleConnexion}
+              >
+                {user ? "Déconnexion" : "S'inscrire"}
+              </div> */}
+              {user ? (
+                <ExitToAppIcon
+                  onClick={handleConnexion}
+                  style={{ color: "red" }}
+                />
+              ) : (
+                <span style={{ marginLeft: "10px" }} onClick={handleConnexion}>
+                  S'inscrire
+                </span>
+              )}
             </div>
           </Hidden>
           <Hidden smDown>
             <div>
-              <Typography variant="h6" style={{ paddingLeft: "10rem" }}>
-                Edification Biblique{" "}
-              </Typography>
+              <Typography variant="h6">Edification Biblique </Typography>
+            </div>
+            <div>
+              {user ? (
+                <span style={{ color: "white", marginRight: "0.2rem" }}>
+                  Bonjour {user}
+                </span>
+              ) : (
+                <Button
+                  variant="outlined"
+                  style={{ color: "white", marginRight: "0.2rem" }}
+                  onClick={() => history.push("/login")}
+                >
+                  Se Connecter
+                </Button>
+              )}
+
+              <Button
+                style={{ color: user ? "red" : "white" }}
+                onClick={handleConnexion}
+              >
+                {user ? "Déconnexion" : "S'inscrire"}
+              </Button>
             </div>
           </Hidden>
         </Toolbar>
