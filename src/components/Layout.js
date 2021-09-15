@@ -21,7 +21,6 @@ const Layout = (props) => {
       >
         <Hidden mdUp>
           <div
-            container
             style={{
               width: "100%",
               //  backgroundColor: "green",
@@ -39,7 +38,6 @@ const Layout = (props) => {
          */}{" "}
         <Hidden smDown>
           <div
-            container
             style={{
               width: "85%",
               //  backgroundColor: "green",

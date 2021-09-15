@@ -9,6 +9,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import logo from "./home.png";
 
+import MuiAccordion from "@material-ui/core/Accordion";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -20,6 +24,12 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
+
+  const [expanded, setExpanded] = React.useState("panel1");
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   return (
     <
