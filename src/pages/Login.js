@@ -66,7 +66,7 @@ const Login = () => {
         setUser(username);
 
         history.push({
-          pathname: "/orateurs",
+          pathname: "/",
           state: { token: res.data.jwtToken },
         });
       })

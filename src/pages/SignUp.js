@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Grid,
@@ -12,6 +12,8 @@ import {
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+
+const baseUrl = process.env.REACT_APP_API_REGISTRATION;
 
 const paperStyle = {
   padding: 20,
@@ -27,6 +29,40 @@ const btnStyle = { margin: "30px 0" };
 
 const SignUp = () => {
   const history = useHistory();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = () => {
+    creatUser();
+  };
+
+  const creatUser = async () => {
+    await axios
+      .post(baseUrl, {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        password: password,
+      })
+      .then((res) => {
+        history.push("/");
+        /*       console.log("Retour:= ", res);
+      console.log("Retour2:= ", res.data.jwtToken);
+
+      history.push({
+        pathname: "/orateurs",
+        // search: "?query=abc",
+        state: { token: res.data.jwtToken },
+      }); */
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -46,6 +82,8 @@ const SignUp = () => {
               id="firstName"
               label="Prénom"
               autoFocus
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -56,6 +94,8 @@ const SignUp = () => {
               label="Nom"
               name="lastName"
               autoComplete="lname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -66,6 +106,8 @@ const SignUp = () => {
               label="Email"
               name="email"
               autoComplete="email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -77,6 +119,8 @@ const SignUp = () => {
               type="password"
               id="password"
               autoComplete="new-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -88,6 +132,8 @@ const SignUp = () => {
               type="password"
               id="confirmPassword"
               autoComplete="new-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Grid>
         </Grid>
@@ -97,6 +143,7 @@ const SignUp = () => {
           variant="contained"
           color="primary"
           fullWidth
+          onClick={handleSubmit}
         >
           Soumettre
         </Button>
