@@ -11,6 +11,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
+import moment from "moment";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
 //const baseUrl = "http://localhost:9050/peb/resumes";
 //const baseUrl = "https://pebback.herokuapp.com/peb/resumes";
 const baseUrl = process.env.REACT_APP_API_RESUMES_ADD;
@@ -37,6 +46,18 @@ const TextEdit = () => {
   const [texte, setTexte] = useState("");
   const [reference, setReference] = useState("");
   const [orateurId, setOrateurId] = useState("");
+
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date()
+    //new Date("2014-08-18T21:11:54")
+  );
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    console.log(date);
+    const NewDate = moment(date).format("DD/MM/YYYY");
+    console.log("my text", NewDate);
+  };
 
   const handleChange = (e, editor) => {
     setData(editor.getData());
@@ -120,13 +141,27 @@ const TextEdit = () => {
       >
         <Grid container>
           <Grid item sx={6}>
-            <TextField
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Date picker dialog"
+                format="dd/MM/yyyy"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+              />
+            </MuiPickersUtilsProvider>
+
+            {/*   <TextField
               onChange={(e) => setDate(e.target.value)}
               //className={classes.field}
               label="Date"
               variant="outlined"
               value={date}
-            />
+            /> */}
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-label">
                 Choisir un orateur

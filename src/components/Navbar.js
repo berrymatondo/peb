@@ -42,12 +42,15 @@ const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-  const { user, setUser, tok, setTok } = useContext(UserContext);
+  const { user, setUser, tok, setTok, isUser, setIsUser, isAdmin, setIsAdmin } =
+    useContext(UserContext);
 
   const handleConnexion = () => {
     if (user) {
       setUser("");
       setTok("");
+      setIsUser(false);
+      setIsAdmin(false);
       history.push("/");
     } else {
       history.push("/signup");

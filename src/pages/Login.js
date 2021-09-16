@@ -32,9 +32,22 @@ const Login = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [usernameErr, setUsernameErr] = useState(false);
+  const [helperTextName, setHelperTextName] = useState("");
+  const [helperTextPass, setHelperTextPass] = useState("");
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState(false);
-  const { user, setUser, tok, setTok } = useContext(UserContext);
+  const {
+    user,
+    setUser,
+    tok,
+    setTok,
+    roles,
+    setRoles,
+    isUser,
+    setIsUser,
+    isAdmin,
+    setIsAdmin,
+  } = useContext(UserContext);
 
   const handleSubmit = () => {
     console.log("username:", username);
@@ -43,10 +56,12 @@ const Login = () => {
     setPasswordErr(false);
     if (username === "") {
       setUsernameErr(true);
+      setHelperTextName("Ce champ est obligatoire");
     }
 
     if (password === "") {
       setPasswordErr(true);
+      setHelperTextPass("Ce champ est obligatoire");
     }
 
     auth();
@@ -64,6 +79,19 @@ const Login = () => {
 
         setTok(res.data.jwtToken);
         setUser(username);
+        setRoles(res.data.roles);
+        console.log("Rolesssss11111:= ", roles.length);
+        if (roles.length > 0) {
+          console.log("Rolesssss2222:= ", roles.length);
+          for (let i = 0; i < roles.length; i++) {
+            if (roles[i] === "ROLE_USER") {
+              setIsUser(true);
+            }
+            if (roles[i] === "ROLE_ADMIN") {
+              setIsAdmin(true);
+            }
+          }
+        }
 
         history.push({
           pathname: "/",
@@ -71,6 +99,8 @@ const Login = () => {
         });
       })
       .catch((error) => {
+        setUsernameErr(true);
+        setHelperTextName(error.response.data.message);
         console.log(error.response.data.message);
       });
   };
@@ -92,7 +122,8 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           error={usernameErr}
-          helperText={usernameErr ? "Ce champ est obligatoire" : ""}
+          // helperText={usernameErr ? "Ce champ est obligatoire" : ""}
+          helperText={helperTextName}
         />
         <br />
         <br />
@@ -106,7 +137,8 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           error={passwordErr}
-          helperText={passwordErr ? "Ce champ est obligatoire" : ""}
+          //helperText={passwordErr ? "Ce champ est obligatoire" : ""}
+          helperText={helperTextPass}
         />
         <div
           style={{

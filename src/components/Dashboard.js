@@ -11,20 +11,27 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import { UserContext } from "../pages/USerContext";
 
 const Dashboard = () => {
   const history = useHistory();
   const [expanded, setExpanded] = React.useState("panel1");
+  const { isUser, setIsUser, isAdmin, setIsAdmin } = useContext(UserContext);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
+
+  useEffect(() => {
+    console.log("isUser ?:= ", isUser);
+    console.log("isAdmin ?:= ", isAdmin);
+  }, []);
 
   return (
     <>
@@ -420,6 +427,10 @@ const Dashboard = () => {
         </Grid>
       </Hidden>
       <Hidden mdUp>
+        {isUser && <div style={{ color: "white" }}> Je suis User</div>}
+
+        {isAdmin && <div style={{ color: "white" }}> Je suis Admin</div>}
+
         <Accordion
           square
           expanded={expanded === "panel1"}

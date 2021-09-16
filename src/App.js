@@ -21,6 +21,10 @@ import { UserContext } from "./pages/USerContext";
 function App() {
   const [user, setUser] = useState("");
   const [tok, setTok] = useState("");
+  const [roles, setRoles] = useState("");
+  const [isUser, setIsUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState("");
+
   return (
     /*     <div className="App" style={{ width: "85%" }}>
      */ <div
@@ -30,7 +34,20 @@ function App() {
       {/*       Test
       <Kid param1={name} greetPapa={(x) => fromKid(x)} />
       <div>From my kid : {bonj} </div> */}
-      <UserContext.Provider value={{ user, setUser, tok, setTok }}>
+      <UserContext.Provider
+        value={{
+          user,
+          setUser,
+          tok,
+          setTok,
+          roles,
+          setRoles,
+          isUser,
+          setIsUser,
+          isAdmin,
+          setIsAdmin,
+        }}
+      >
         <Layout>
           <Switch>
             <Route exact path="/">
