@@ -46,13 +46,17 @@ const Navbar = () => {
     useContext(UserContext);
 
   const handleConnexion = () => {
+    console.log("User:=", user);
     if (user) {
+      console.log("1111111111111111111111111111111111");
       setUser("");
       setTok("");
       setIsUser(false);
       setIsAdmin(false);
-      history.push("/");
+      history.push("/login");
     } else {
+      console.log("2222222222222222222222222222222222");
+
       history.push("/signup");
     }
   };

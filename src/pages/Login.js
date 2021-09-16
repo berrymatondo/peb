@@ -80,14 +80,14 @@ const Login = () => {
         setTok(res.data.jwtToken);
         setUser(username);
         setRoles(res.data.roles);
-        console.log("Rolesssss11111:= ", roles.length);
-        if (roles.length > 0) {
-          console.log("Rolesssss2222:= ", roles.length);
-          for (let i = 0; i < roles.length; i++) {
-            if (roles[i] === "ROLE_USER") {
+        console.log("Rolesssss11111:= ", res.data.roles.length);
+        if (res.data.roles.length > 0) {
+          console.log("Rolesssss222222222:= ", res.data.roles.length);
+          for (let i = 0; i < res.data.roles.length; i++) {
+            if (res.data.roles[i] === "ROLE_USER") {
               setIsUser(true);
             }
-            if (roles[i] === "ROLE_ADMIN") {
+            if (res.data.roles[i] === "ROLE_ADMIN") {
               setIsAdmin(true);
             }
           }
