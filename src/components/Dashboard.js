@@ -429,7 +429,29 @@ const Dashboard = () => {
       <Hidden mdUp>
         {isUser && <div style={{ color: "white" }}> Je suis User</div>}
 
-        {isAdmin && <div style={{ color: "white" }}> Je suis Admin</div>}
+        {isAdmin && (
+          <div style={{ color: "white" }}>
+            {" "}
+            Je suis Admin
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              onClick={() => history.push("/edit")}
+              style={{ marginRight: "10px" }}
+            >
+              New Resume
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              onClick={() => history.push("/orateurs")}
+            >
+              Orateurs
+            </Button>
+          </div>
+        )}
 
         <Accordion
           square
@@ -470,7 +492,7 @@ const Dashboard = () => {
                 variant="contained"
                 size="small"
                 color="primary"
-                onClick={() => history.push("/cultes")}
+                onClick={() => history.push("/ebm")}
               >
                 Voir les résumés
               </Button>

@@ -42,21 +42,29 @@ const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-  const { user, setUser, tok, setTok, isUser, setIsUser, isAdmin, setIsAdmin } =
-    useContext(UserContext);
+  const {
+    user,
+    setUser,
+    tok,
+    setTok,
+    isUser,
+    setIsUser,
+    isAdmin,
+    setIsAdmin,
+    userId,
+    setUserId,
+  } = useContext(UserContext);
 
   const handleConnexion = () => {
     console.log("User:=", user);
     if (user) {
-      console.log("1111111111111111111111111111111111");
       setUser("");
       setTok("");
       setIsUser(false);
       setIsAdmin(false);
+      setUserId("");
       history.push("/login");
     } else {
-      console.log("2222222222222222222222222222222222");
-
       history.push("/signup");
     }
   };

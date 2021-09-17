@@ -37,7 +37,8 @@ const TextEdit = () => {
   const [data, setData] = useState("");
   const [dataHtml, setDataHtml] = useState("");
   const history = useHistory();
-  const [date, setDate] = useState("dd/mm/yyyy");
+  const [date, setDate] = useState(new Date());
+
   const [theme, setTheme] = useState("");
   const classes = useStyles();
   const [cat, setCat] = React.useState("");
@@ -51,12 +52,17 @@ const TextEdit = () => {
     new Date()
     //new Date("2014-08-18T21:11:54")
   );
+  const [newDate, setNewDate] = useState(
+    moment(selectedDate).format("DD/MM/YYYY")
+  );
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(date);
-    const NewDate = moment(date).format("DD/MM/YYYY");
-    console.log("my text", NewDate);
+    setDate(date);
+    console.log("selectedDate", selectedDate);
+    setNewDate(moment(date).format("DD/MM/YYYY"));
+    console.log("my text", newDate);
+    console.log("Good date", moment(date).format("DD/MM/YYYY"));
   };
 
   const handleChange = (e, editor) => {
@@ -96,7 +102,7 @@ const TextEdit = () => {
   const addResume = async () => {
     await axios
       .post(baseUrl + "add", {
-        date: date,
+        date: moment(date).format("DD/MM/YYYY"),
         theme: theme,
         message: data,
         category: cat,
@@ -147,7 +153,7 @@ const TextEdit = () => {
                 id="date-picker-dialog"
                 label="Date picker dialog"
                 format="dd/MM/yyyy"
-                value={selectedDate}
+                value={date}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
                   "aria-label": "change date",

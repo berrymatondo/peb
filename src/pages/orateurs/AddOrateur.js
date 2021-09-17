@@ -50,10 +50,10 @@ const AddOrateur = ({ setOpenPopup }) => {
         {
           lastname: lastname,
           firstname: firstname,
-        },
+        } /* ,
         {
           headers: { Authorization: `Bearer ${location.state.token}` },
-        }
+        } */
       )
       .then((res) => {
         setOpenPopup(false);

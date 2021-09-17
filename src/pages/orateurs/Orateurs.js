@@ -35,9 +35,11 @@ const Orateurs = () => {
   // Get all orateurs
   const getOrateurs = async () => {
     await axios
-      .get(baseUrl, {
+      .get(
+        baseUrl /* , {
         headers: { Authorization: `Bearer ${location.state.token}` },
-      })
+      } */
+      )
       .then((res) => {
         console.log("Orateurs:=", res.data);
         setOrateurs(res.data);
@@ -48,7 +50,7 @@ const Orateurs = () => {
   };
 
   useEffect(() => {
-    console.log("TOKEN orateurs:=", location.state.token);
+    //console.log("TOKEN orateurs:=", location.state.token);
     getOrateurs();
   }, [reload]);
 

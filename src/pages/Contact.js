@@ -51,7 +51,7 @@ const Contact = () => {
 
   const addComments = async () => {
     await axios
-      .post(baseUrl + "/add", {
+      .post(baseUrl + "add", {
         comments: comments,
         firstname: firstname,
       })

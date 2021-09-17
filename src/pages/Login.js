@@ -47,6 +47,8 @@ const Login = () => {
     setIsUser,
     isAdmin,
     setIsAdmin,
+    userId,
+    setUserId,
   } = useContext(UserContext);
 
   const handleSubmit = () => {
@@ -80,6 +82,7 @@ const Login = () => {
         setTok(res.data.jwtToken);
         setUser(username);
         setRoles(res.data.roles);
+        setUserId(res.data.appUserId);
         console.log("Rolesssss11111:= ", res.data.roles.length);
         if (res.data.roles.length > 0) {
           console.log("Rolesssss222222222:= ", res.data.roles.length);
