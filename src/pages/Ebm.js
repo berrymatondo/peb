@@ -77,9 +77,10 @@ const Ebm = () => {
   };
 
   const handleTag = (ligne) => {
-    //   console.log("Resume to tag:=", ligne);
-    // console.log("USer to tag:=", userId);
+    console.log("Resume to tag:=", ligne);
+    console.log("USer to tag:=", userId);
     if (userId) {
+      console.log("url:=", baseUrlTag + "add");
       addTag(userId, ligne);
     }
   };
