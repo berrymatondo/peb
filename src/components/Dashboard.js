@@ -448,7 +448,7 @@ const Dashboard = () => {
               color="primary"
               onClick={() => history.push("/orateurs")}
             >
-              Orateurs
+              Liste Orateurs
             </Button>
           </div>
         )}

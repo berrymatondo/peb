@@ -58,7 +58,7 @@ const Ebm = () => {
     await axios
       .post(
         // "http://localhost:9050/peb/resumes/tag/add",
-        baseUrlTag + "add",
+        baseUrlTag,
         {
           usId: appUSer,
           resId: ResumeId,
@@ -80,7 +80,7 @@ const Ebm = () => {
     console.log("Resume to tag:=", ligne);
     console.log("USer to tag:=", userId);
     if (userId) {
-      console.log("url:=", baseUrlTag + "add");
+      console.log("urladd:=", baseUrlTag);
       addTag(userId, ligne);
     }
   };
