@@ -12,6 +12,7 @@ import { UserContext } from "./USerContext";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
 const baseUrl = process.env.REACT_APP_API_RESUMES;
+const baseUrlTag = process.env.REACT_APP_API_TAGS;
 
 const Ebm = () => {
   const history = useHistory();
@@ -56,7 +57,8 @@ const Ebm = () => {
   const addTag = async (appUSer, ResumeId) => {
     await axios
       .post(
-        "http://localhost:9050/peb/resumes/tag/add",
+        // "http://localhost:9050/peb/resumes/tag/add",
+        baseUrlTag + "add",
         {
           usId: appUSer,
           resId: ResumeId,
