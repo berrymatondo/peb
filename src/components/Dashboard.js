@@ -22,7 +22,8 @@ import { UserContext } from "../pages/USerContext";
 const Dashboard = () => {
   const history = useHistory();
   const [expanded, setExpanded] = React.useState("panel1");
-  const { isUser, setIsUser, isAdmin, setIsAdmin } = useContext(UserContext);
+  const { isUser, setIsUser, isAdmin, setIsAdmin, user, firstname } =
+    useContext(UserContext);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -427,12 +428,13 @@ const Dashboard = () => {
         </Grid>
       </Hidden>
       <Hidden mdUp>
-        {isUser && <div style={{ color: "white" }}> Je suis User</div>}
+        {(isUser || isAdmin) && (
+          <div style={{ color: "white" }}> Bienvenue {firstname}</div>
+        )}
 
         {isAdmin && (
           <div style={{ color: "white" }}>
-            {" "}
-            Je suis Admin
+            <br />
             <Button
               variant="contained"
               size="small"

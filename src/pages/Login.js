@@ -78,6 +78,8 @@ const Login = () => {
     setIsAdmin,
     userId,
     setUserId,
+    firstname,
+    setFirstname,
   } = useContext(UserContext);
 
   const handleSubmit = () => {
@@ -106,10 +108,13 @@ const Login = () => {
       })
       .then((res) => {
         // Set the Usercontext
+        console.log(res.data);
+        setTok(res.data.jwtToken);
         setTok(res.data.jwtToken);
         setUser(username);
         setRoles(res.data.roles);
         setUserId(res.data.appUserId);
+        setFirstname(res.data.firstname);
         if (res.data.roles.length > 0) {
           for (let i = 0; i < res.data.roles.length; i++) {
             if (res.data.roles[i] === "ROLE_USER") {
@@ -222,7 +227,7 @@ const Login = () => {
               style={{ cursor: "pointer" }}
             >
               {" "}
-              enregistrez-vous{" "}
+              <strong>enregistrez-vous</strong>
             </Link>
           </Typography>
         </div>

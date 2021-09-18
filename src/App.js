@@ -25,6 +25,7 @@ function App() {
   const [isUser, setIsUser] = useState("");
   const [isAdmin, setIsAdmin] = useState("");
   const [userId, setUserId] = useState("");
+  const [firstname, setFirstname] = useState("");
 
   return (
     /*     <div className="App" style={{ width: "85%" }}>
@@ -49,6 +50,8 @@ function App() {
           setIsAdmin,
           userId,
           setUserId,
+          firstname,
+          setFirstname,
         }}
       >
         <Layout>

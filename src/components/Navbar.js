@@ -53,6 +53,7 @@ const Navbar = () => {
     setIsAdmin,
     userId,
     setUserId,
+    firstname,
   } = useContext(UserContext);
 
   const handleConnexion = () => {
@@ -95,7 +96,7 @@ const Navbar = () => {
                     paddingRight: "10px",
                   }}
                 >
-                  Bonjour {user}
+                  {firstname}
                 </span>
               ) : (
                 /*   <div
@@ -152,7 +153,7 @@ const Navbar = () => {
               {user ? (
                 <div>
                   <span style={{ color: "white", marginRight: "0.5rem" }}>
-                    Bonjour {user}
+                    Bonjour {firstname}
                   </span>
                   <Button
                     color="secondary"

@@ -205,10 +205,12 @@ const EbmDetails = () => {
           }}
         >
           <div style={{ color: "white" }}>
-            <span style={{ paddingLeft: "10px" }}>{resume.date}</span> -{" "}
-            <strong>
-              {resume.firstname} {resume.lastname}
-            </strong>
+            <span style={{ paddingLeft: "20px" }}>{resume.date}</span> <br />
+            <div>
+              <strong>
+                {resume.firstname} {resume.lastname}
+              </strong>
+            </div>
           </div>
 
           {/*           <div style={{ color: "white", paddingRight: "10px" }}>
