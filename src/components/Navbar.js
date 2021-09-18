@@ -56,7 +56,7 @@ const Navbar = () => {
   } = useContext(UserContext);
 
   const handleConnexion = () => {
-    console.log("User:=", user);
+    // console.log("User:=", user);
     if (user) {
       setUser("");
       setTok("");
@@ -105,56 +105,73 @@ const Navbar = () => {
                 >
                   Se Connecter
                 </div> */
-
-                <ExitToAppIcon
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
                   onClick={() => history.push("/login")}
-                  style={{ color: "lightgreen" }}
-                />
+                >
+                  <ExitToAppIcon style={{ color: "lightgreen" }} />
+                  <span style={{ marginLeft: "0.2rem" }}>Connexion</span>
+                </div>
               )}
 
-              {/* <div
-                style={{ color: user ? "red" : "white" }}
-                onClick={handleConnexion}
-              >
-                {user ? "Déconnexion" : "S'inscrire"}
-              </div> */}
-              {user ? (
-                <ExitToAppIcon
-                  onClick={handleConnexion}
-                  style={{ color: "red" }}
-                />
-              ) : (
+              {
+                user && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleConnexion}
+                    // onClick={() => history.push("/login")}
+                  >
+                    <ExitToAppIcon style={{ color: "red" }} />
+                    <span style={{ marginLeft: "0.2rem" }}>Déconnexion</span>
+                  </div>
+                )
+                /* ) : (
                 <span style={{ marginLeft: "10px" }} onClick={handleConnexion}>
                   S'inscrire
                 </span>
-              )}
+              ) */
+              }
             </div>
           </Hidden>
           <Hidden smDown>
-            <div>
+            <div
+              onClick={() => history.push("/")}
+              style={{ cursor: "pointer" }}
+            >
               <Typography variant="h6">Edification Biblique </Typography>
             </div>
             <div>
               {user ? (
-                <span style={{ color: "white", marginRight: "0.2rem" }}>
-                  Bonjour {user}
-                </span>
+                <div>
+                  <span style={{ color: "white", marginRight: "0.5rem" }}>
+                    Bonjour {user}
+                  </span>
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    //style={{ color: user ? "red" : "white" }}
+                    onClick={handleConnexion}
+                  >
+                    Déconnexion
+                  </Button>
+                </div>
               ) : (
                 <Button
                   variant="outlined"
                   style={{ color: "white", marginRight: "0.2rem" }}
                   onClick={() => history.push("/login")}
                 >
-                  Se Connecter
+                  Connexion
                 </Button>
               )}
-
-              <Button
-                style={{ color: user ? "red" : "white" }}
-                onClick={handleConnexion}
-              >
-                {user ? "Déconnexion" : "S'inscrire"}
-              </Button>
             </div>
           </Hidden>
         </Toolbar>

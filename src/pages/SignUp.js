@@ -17,8 +17,9 @@ const baseUrl = process.env.REACT_APP_API_REGISTRATION;
 
 const paperStyle = {
   padding: 20,
-  height: "70vh",
-  width: 280,
+  //height: "70vh",
+  width: "95%",
+  maxWidth: 400,
   margin: "20px auto",
 };
 const avatarStyle = {

@@ -47,8 +47,8 @@ const Ebm = () => {
   };
 
   useEffect(() => {
-    console.log(location.pathname); // result: '/secondpage'
-    console.log(location.search); // result: '?query=abc'
+    // console.log(location.pathname); // result: '/secondpage'
+    // console.log(location.search); // result: '?query=abc'
     //console.log(location.state.token); // result: 'some_value'
     getAllCours();
   }, [reload]);
@@ -87,6 +87,7 @@ const Ebm = () => {
 
   return (
     <>
+      <br />
       {/* <div style={{ color: "white" }}>
         {process.env.NODE_ENV} - {process.env.REACT_APP_API_RESUMES}
       </div> */}
@@ -96,15 +97,20 @@ const Ebm = () => {
           onClick={() => history.push("/")}
         >
           <ArrowBackIosIcon
-            style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
+            style={{
+              paddingLeft: "0.5rem",
+              paddingBottom: "5px",
+              color: "yellow",
+            }}
           />
-          <span style={{ fontSize: 15 }}>Retour</span>
+          <span style={{ fontSize: 15, color: "yellow" }}>Retour</span>
         </div>
 
-        <strong style={{ flexGrow: "1" }}>
+        {/* <strong style={{ flexGrow: "1" }}>
           Plateforme d'Edification Biblique
-        </strong>
+        </strong> */}
       </div>
+      <br />
       <MaterialTable
         style={{
           paddingLeft: "0.25rem",
@@ -113,7 +119,7 @@ const Ebm = () => {
         columns={[
           {
             title: "Jour/Orateur",
-            field: "Resumes",
+            field: "lastname",
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
@@ -131,7 +137,7 @@ const Ebm = () => {
 
           {
             title: "Référence",
-            field: "message",
+            field: "texte",
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
@@ -154,8 +160,8 @@ const Ebm = () => {
             ),
           },
           {
-            title: "Lu",
-            field: "tag",
+            title: "Lu ?",
+            field: "message",
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
@@ -165,9 +171,37 @@ const Ebm = () => {
               /*               <div onClick={() => history.push("/ebmdetails")}>
                */ <div onClick={() => handleTag(row.resumeId)}>
                 {row.tag ? (
-                  <MdDrafts style={{ fontSize: "30px", color: "green" }} />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <MdDrafts
+                      style={{
+                        fontSize: "30px",
+                        color: "green",
+                        marginRight: "5px",
+                      }}
+                    />
+                    Lu
+                  </div>
                 ) : userId ? (
-                  <MdMarkunread style={{ fontSize: "30px", color: "red" }} />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <MdMarkunread
+                      style={{
+                        fontSize: "30px",
+                        color: "red",
+                        marginRight: "5px",
+                      }}
+                    />
+                    Non lu
+                  </div>
                 ) : (
                   <MdMarkunread style={{ fontSize: "30px", color: "gray" }} />
                 )}
@@ -188,7 +222,7 @@ const Ebm = () => {
             paginationPosition: "left",
           },
         }}
-        title=""
+        title="EBM"
       />
     </>
   );

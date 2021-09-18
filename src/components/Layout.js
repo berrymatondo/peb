@@ -15,7 +15,7 @@ const Layout = (props) => {
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          height: "85%",
+          //height: "85%",
           //backgroundColor: "red",
         }}
       >
