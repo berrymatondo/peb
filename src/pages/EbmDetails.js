@@ -32,15 +32,27 @@ const EbmDetails = () => {
   const { userId } = useContext(UserContext);
 
   const getAllCours = async () => {
-    await axios
-      .get(baseUrl + userId + "/" + resumeId)
-      .then((res) => {
-        console.log("Resume:=", res.data);
-        setResume(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (userId) {
+      await axios
+        .get(baseUrl + userId + "/" + resumeId)
+        .then((res) => {
+          // console.log("Resume:=", res.data);
+          setResume(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      await axios
+        .get(baseUrl + resumeId)
+        .then((res) => {
+          // console.log("Resume:=", res.data);
+          setResume(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   useEffect(() => {
@@ -48,8 +60,8 @@ const EbmDetails = () => {
   }, [reload]);
 
   const handleTag = () => {
-    console.log("Resume to tag:=", resumeId);
-    console.log("USer to tag:=", userId);
+    // console.log("Resume to tag:=", resumeId);
+    // console.log("USer to tag:=", userId);
     if (userId) {
       //console.log("urladd:=", baseUrlTag);
       addTag(userId, resumeId);
