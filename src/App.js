@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextEditor from "./components/TextEditor";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "./App.css";
@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { UserContext } from "./pages/USerContext";
+import { UseDarkMode } from "./components/UseDarkMode";
 
 function App() {
   const [user, setUser] = useState("");
@@ -26,12 +27,19 @@ function App() {
   const [isAdmin, setIsAdmin] = useState("");
   const [userId, setUserId] = useState("");
   const [firstname, setFirstname] = useState("");
+  const [backg, setBackg] = useState("#10035c");
+  const [forg, setForg] = useState("#FFFFFF");
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    console.log("backg:=", backg);
+  }, [backg]);
 
   return (
     /*     <div className="App" style={{ width: "85%" }}>
      */ <div
       className="App"
-      style={{ width: "100%", backgroundColor: "#10035c", height: "100vh" }}
+      style={{ width: "100%", backgroundColor: backg, height: "100vh" }}
     >
       {/*       Test
       <Kid param1={name} greetPapa={(x) => fromKid(x)} />
@@ -52,6 +60,12 @@ function App() {
           setUserId,
           firstname,
           setFirstname,
+          backg,
+          setBackg,
+          forg,
+          setForg,
+          dark,
+          setDark,
         }}
       >
         <Layout>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,6 +11,8 @@ import { Hidden, List, ListItem, ListItemText, Paper } from "@material-ui/core";
 import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../pages/USerContext";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { BsMoon } from "react-icons/bs";
+import { FiSun } from "react-icons/fi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const history = useHistory();
+  //const [dark, setDark] = useState(true);
+  const [icone, setIcone] = useState("BsMoon");
   const location = useLocation();
   const {
     user,
@@ -54,7 +58,22 @@ const Navbar = () => {
     userId,
     setUserId,
     firstname,
+    setBackg,
+    setForg,
+    dark,
+    setDark,
   } = useContext(UserContext);
+
+  const couleur = () => {
+    setDark(!dark);
+    if (dark === true) {
+      setBackg("#070221");
+      setForg("#FFFFFF");
+    } else {
+      setBackg("#10035c");
+      setForg("#FFFFFF");
+    }
+  };
 
   const handleConnexion = () => {
     // console.log("User:=", user);
@@ -83,6 +102,19 @@ const Navbar = () => {
               onClick={() => history.push("/")}
             >
               <HomeIcon />
+            </IconButton>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={couleur}
+            >
+              {dark ? (
+                <BsMoon style={{ color: "yellow" }} />
+              ) : (
+                <FiSun style={{ color: "yellow" }} />
+              )}
             </IconButton>
             <div className={classes.title}>
               <Typography variant="body1">Edification Biblique</Typography>
@@ -115,7 +147,7 @@ const Navbar = () => {
                   onClick={() => history.push("/login")}
                 >
                   <ExitToAppIcon style={{ color: "lightgreen" }} />
-                  <span style={{ marginLeft: "0.2rem" }}>Connexion</span>
+                  {/* <span style={{ marginLeft: "0.2rem" }}>Connexion</span> */}
                 </div>
               )}
 
@@ -131,7 +163,8 @@ const Navbar = () => {
                     // onClick={() => history.push("/login")}
                   >
                     <ExitToAppIcon style={{ color: "red" }} />
-                    <span style={{ marginLeft: "0.2rem" }}>Déconnexion</span>
+                    {/*                     <span style={{ marginLeft: "0.2rem" }}>Déconnexion</span>
+                     */}{" "}
                   </div>
                 )
                 /* ) : (

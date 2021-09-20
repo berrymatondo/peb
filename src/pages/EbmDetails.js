@@ -29,7 +29,7 @@ const EbmDetails = () => {
   const { resumeId } = useParams();
   const [resume, setResume] = useState();
   const [reload, setReload] = useState(false);
-  const { userId } = useContext(UserContext);
+  const { userId, dark, backg } = useContext(UserContext);
 
   const getAllCours = async () => {
     if (userId) {
@@ -99,7 +99,7 @@ const EbmDetails = () => {
         justifyContent: "start",
         alignItems: "start",
         padding: "0.15rem",
-        // backgroundColor: "yellow",
+        //backgroundColor: "yellow",
       }}
     >
       <br />
@@ -110,7 +110,7 @@ const EbmDetails = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           width: "100%",
-          //  backgroundColor: "green",
+          //backgroundColor: "green",
         }}
       >
         <div
@@ -228,10 +228,11 @@ const EbmDetails = () => {
         {resume && (
           <Paper
             style={{
-              border: "1px solid black",
+              border: dark ? "" : "1px solid white",
               alignSelf: "center",
               borderRadius: "5px",
-              // backgroundColor: "#E6EDEF",
+              backgroundColor: dark ? "#F5F5F5" : backg,
+              color: dark ? backg : "white",
             }}
           >
             <Typography variant="subtitle2">
@@ -256,9 +257,11 @@ const EbmDetails = () => {
               borderRadius: "5px",
               // color: "white",
               // backgroundColor: "#2E3134",
-              backgroundColor: "#F5F5F5",
+              backgroundColor: dark ? "#F5F5F5" : backg,
+              color: dark ? backg : "white",
               //backgroundColor: "lightblue",
               //height: "400px",
+              border: dark ? "" : "1px solid white",
 
               // width: "500px",
               maxHeight: "400px",
