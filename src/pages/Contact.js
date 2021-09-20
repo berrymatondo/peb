@@ -10,11 +10,12 @@ import {
   Snackbar,
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import MuiAlert from "@material-ui/lab/Alert";
+import { UserContext } from "./USerContext";
 
 const baseUrl = process.env.REACT_APP_API_COMMENTS;
 //const baseUrl = process.env.REACT_APP_API_RESUMES;
@@ -25,6 +26,7 @@ const Contact = () => {
   const [comments, setComments] = useState("");
   const [showError, setShowError] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const { dark, backg } = useContext(UserContext);
 
   const resetForm = () => {
     setFirstname("");
@@ -76,7 +78,7 @@ const Contact = () => {
             <ArrowBackIosIcon
               style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
             />
-            <span style={{ fontSize: 15 }}>Retour</span>
+            <span style={{ fontSize: 15, color: "yellow" }}>Retour</span>
           </div>
 
           <strong style={{ flexGrow: "1" }}>
@@ -93,7 +95,9 @@ const Contact = () => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                    backgroundColor: "#f0f0f0",
+                    //backgroundColor: "#f0f0f0",
+                    border: dark ? "" : "1px solid white",
+                    backgroundColor: dark ? "#F0F0F0" : backg,
                   }}
                 >
                   <Typography
@@ -102,12 +106,17 @@ const Contact = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Contact</strong>
+                    <strong style={{ color: dark ? "" : "yellow" }}>
+                      Contact
+                    </strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body1"
-                    style={{ textAlign: "start" }}
+                    style={{
+                      textAlign: "start",
+                      color: dark ? backg : "white",
+                    }}
                   >
                     Vous avez un commentaire ou une suggestion, faites-le nous
                     savoir afin d'améliorer cette plateforme et emmener la
@@ -141,7 +150,7 @@ const Contact = () => {
                       placeholder="Prénom"
                       onChange={(e) => setFirstname(e.target.value)}
                     />
-                    <br />
+                    <br style={{ backgroundColor: dark ? "white" : backg }} />
 
                     <TextField
                       id="outlined-multiline-static"
@@ -184,7 +193,11 @@ const Contact = () => {
               <ArrowBackIosIcon
                 style={{ paddingLeft: "0.5rem", paddingTop: "5px" }}
               />
-              <span style={{ fontSize: 15, paddingTop: "5px" }}>Retour</span>
+              <span
+                style={{ fontSize: 15, paddingTop: "5px", color: "yellow" }}
+              >
+                Retour
+              </span>
             </div>
           </Grid>
         </Grid>

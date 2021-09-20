@@ -22,8 +22,16 @@ import { UserContext } from "../pages/USerContext";
 const Dashboard = () => {
   const history = useHistory();
   const [expanded, setExpanded] = React.useState("panel1");
-  const { isUser, setIsUser, isAdmin, setIsAdmin, user, firstname } =
-    useContext(UserContext);
+  const {
+    isUser,
+    setIsUser,
+    isAdmin,
+    setIsAdmin,
+    user,
+    firstname,
+    dark,
+    backg,
+  } = useContext(UserContext);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -460,32 +468,50 @@ const Dashboard = () => {
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
         >
-          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <AccordionSummary
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+            style={{
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "white" : backg,
+            }}
+          >
             <Typography
               gutterBottom
               variant="h6"
               component="h2"
               color="primary"
             >
-              <strong>Etudes Bibliques du Midi</strong>
+              <strong style={{ color: dark ? "" : "white" }}>
+                Etudes Bibliques du Midi
+              </strong>
             </Typography>
           </AccordionSummary>
           <AccordionDetails
             style={{
               display: "flex",
               flexDirection: "column",
-              backgroundColor: "#f0f0f0",
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "#F0F0F0" : backg,
             }}
           >
             <div>
               <Typography
                 gutterBottom
                 variant="body1"
-                style={{ textAlign: "start" }}
+                style={{
+                  textAlign: "start",
+
+                  color: dark ? backg : "white",
+                }}
               >
                 Cette rubrique donne accès aux résumés (non officels) de
                 différentes études bibliques réalisées au sein d'
-                <a target="_blank" href="https://impactcentrechretien.com/">
+                <a
+                  style={{ color: dark ? backg : "yellow" }}
+                  target="_blank"
+                  href="https://impactcentrechretien.com/"
+                >
                   Impact Centre Chrétien
                 </a>{" "}
                 Bruxelles pendant les heures de midi.
@@ -507,33 +533,46 @@ const Dashboard = () => {
           expanded={expanded === "panel2"}
           onChange={handleChange("panel2")}
         >
-          <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <AccordionSummary
+            aria-controls="panel2d-content"
+            id="panel2d-header"
+            style={{
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "white" : backg,
+            }}
+          >
             <Typography
               gutterBottom
               variant="h6"
               component="h2"
               color="primary"
             >
-              <strong>Cultes ICC</strong>
+              <strong style={{ color: dark ? "" : "white" }}>Cultes ICC</strong>
             </Typography>
           </AccordionSummary>
           <AccordionDetails
             style={{
               display: "flex",
               flexDirection: "column",
-              backgroundColor: "#f0f0f0",
+              //backgroundColor: "#f0f0f0",
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "#F0F0F0" : backg,
             }}
           >
             <div>
               <Typography
                 gutterBottom
                 variant="body1"
-                style={{ textAlign: "start" }}
+                style={{ textAlign: "start", color: dark ? backg : "white" }}
               >
                 Dans cette rubrique, vous trouverez les résumés (non officels)
                 de différentes prédications qui ont eu lieu lors des cultes
                 dominicaux au sein de la famille{" "}
-                <a target="_blank" href="https://impactcentrechretien.com/">
+                <a
+                  style={{ color: dark ? backg : "yellow" }}
+                  target="_blank"
+                  href="https://impactcentrechretien.com/"
+                >
                   Impact Centre Chrétien
                 </a>
                 .
@@ -555,32 +594,47 @@ const Dashboard = () => {
           expanded={expanded === "panel3"}
           onChange={handleChange("panel3")}
         >
-          <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <AccordionSummary
+            aria-controls="panel3d-content"
+            id="panel3d-header"
+            style={{
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "white" : backg,
+            }}
+          >
             <Typography
               gutterBottom
               variant="h6"
               component="h2"
               color="primary"
             >
-              <strong>Autres Résumés</strong>
+              <strong style={{ color: dark ? "" : "white" }}>
+                Autres Résumés
+              </strong>
             </Typography>
           </AccordionSummary>
           <AccordionDetails
             style={{
               display: "flex",
               flexDirection: "column",
-              backgroundColor: "#f0f0f0",
+              //backgroundColor: "#f0f0f0",
+              border: dark ? "" : "1px solid white",
+              backgroundColor: dark ? "#F0F0F0" : backg,
             }}
           >
             <div>
               <Typography
                 gutterBottom
                 variant="body1"
-                style={{ textAlign: "start" }}
+                style={{ textAlign: "start", color: dark ? backg : "white" }}
               >
                 Vous retrouverez ici d'autres résumés (non officels) de
                 différentes exhortations au sein de la famille{" "}
-                <a target="_blank" href="https://impactcentrechretien.com/">
+                <a
+                  style={{ color: dark ? backg : "yellow" }}
+                  target="_blank"
+                  href="https://impactcentrechretien.com/"
+                >
                   Impact Centre Chrétien
                 </a>
                 . Exemple: Méga Impact conférence, ...

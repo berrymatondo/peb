@@ -8,12 +8,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Grid, Paper } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "./USerContext";
 
 const About = () => {
   const history = useHistory();
+  const { dark, backg } = useContext(UserContext);
   return (
     <>
       <Hidden mdUp>
@@ -25,7 +27,7 @@ const About = () => {
             <ArrowBackIosIcon
               style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
             />
-            <span style={{ fontSize: 15 }}>Retour</span>
+            <span style={{ fontSize: 15, color: "yellow" }}>Retour</span>
           </div>
 
           <strong style={{ flexGrow: "1" }}>
@@ -42,7 +44,9 @@ const About = () => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "flex-start",
-                    backgroundColor: "#f0f0f0",
+                    // backgroundColor: "#f0f0f0",
+                    backgroundColor: dark ? "#f0f0f0" : backg,
+                    border: dark ? "" : "1px solid white",
                   }}
                 >
                   <Typography
@@ -51,12 +55,19 @@ const About = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>A propos</strong>
+                    <strong style={{ color: dark ? "" : "yellow" }}>
+                      A propos
+                    </strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body1"
-                    style={{ textAlign: "start" }}
+                    style={{
+                      textAlign: "start",
+                      //   border: dark ? "" : "1px solid white",
+                      backgroundColor: dark ? "" : backg,
+                      color: dark ? backg : "white",
+                    }}
                   >
                     Etant appelés à manifester nos dons et nos talents que le
                     Saint-Esprit a déposés en nous, voici ma petite contribution
@@ -65,14 +76,30 @@ const About = () => {
                     entier.
                   </Typography>
                   <br />
-                  <Typography variant="body1" style={{ textAlign: "start" }}>
+                  <Typography
+                    variant="body1"
+                    style={{
+                      textAlign: "start",
+                      //  border: dark ? "" : "1px solid white",
+                      backgroundColor: dark ? "" : backg,
+                      color: dark ? backg : "white",
+                    }}
+                  >
                     Le but de cette plateforme n'est pas de juste nous limiter à
                     lire les différents résumés, mais de nous pousser à aller
                     encore plus loin, creuser, méditer et vivre la Parole de
                     Dieu.
                   </Typography>
                   <br />
-                  <Typography variant="body1" style={{ textAlign: "start" }}>
+                  <Typography
+                    variant="body1"
+                    style={{
+                      textAlign: "start",
+                      //  border: dark ? "" : "1px solid white",
+                      backgroundColor: dark ? "" : backg,
+                      color: dark ? backg : "white",
+                    }}
+                  >
                     Vos conseils et suggestions sont les beinvenus. N'hésitez
                     pas à nous{" "}
                     <strong
@@ -84,7 +111,14 @@ const About = () => {
                     pour cela.
                   </Typography>
                   <br />
-                  <Typography variant="body1">
+                  <Typography
+                    variant="body1"
+                    style={{
+                      // border: dark ? "" : "1px solid white",
+                      backgroundColor: dark ? "" : backg,
+                      color: dark ? backg : "white",
+                    }}
+                  >
                     Un amoureux de la Parole de Dieu.
                   </Typography>
                 </CardContent>
@@ -97,7 +131,7 @@ const About = () => {
               <ArrowBackIosIcon
                 style={{ paddingLeft: "0.5rem", paddingBottom: "5px" }}
               />
-              <span style={{ fontSize: 15 }}>Retour</span>
+              <span style={{ fontSize: 15, color: "yellow" }}>Retour</span>
             </div>
           </Grid>
         </Grid>
