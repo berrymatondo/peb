@@ -1,7 +1,4 @@
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Button,
   Card,
   CardActionArea,
@@ -10,207 +7,65 @@ import {
   Hidden,
   Typography,
 } from "@material-ui/core";
-import { Grid, Paper } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
+import { Grid } from "@material-ui/core";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import MuiAccordion from "@material-ui/core/Accordion";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
-import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import { UserContext } from "../pages/USerContext";
+import DashboardItem from "./DashboardItem";
 
 const Dashboard = () => {
   const history = useHistory();
-  const [expanded, setExpanded] = React.useState("panel1");
-  const {
-    isUser,
-    setIsUser,
-    isAdmin,
-    setIsAdmin,
-    user,
-    firstname,
-    dark,
-    backg,
-  } = useContext(UserContext);
-
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
-  };
-
-  useEffect(() => {
-    console.log("isUser ?:= ", isUser);
-    console.log("isAdmin ?:= ", isAdmin);
-  }, []);
+  const { isUser, isAdmin, firstname } = useContext(UserContext);
+  const content31 =
+    "Vous retrouverez ici d'autres résumés (non officels) de différentes exhortations au sein de la famille ";
+  const content32 = ". Exemple: Méga Impact conférence, ...";
+  const content21 =
+    "Dans cette rubrique, vous trouverez les résumés (non officels) de différentes prédications qui ont eu lieu lors des cultes dominicaux au sein de la famille ";
+  const content22 = ".";
+  const content11 =
+    "Cette rubrique donne accès aux résumés (non officels) de différentes études bibliques réalisées au sein d'";
+  const content12 = "Bruxelles pendant les heures de midi.";
 
   return (
     <>
-      {/*       <Hidden mdUp>
-        <div style={{ color: "white", fontSize: 15 }}>
-          Plateforme d'Edification Biblique
-        </div>
-        <Grid container spacing={1} style={{ paddingTop: "0.5rem" }}>
-          <Grid item xs={12} md={4}>
-            <Card style={{}}>
-              <CardActionArea>
-                <CardContent
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    backgroundColor: "#f0f0f0",
-                    paddingBottom: "0px",
-                    paddingTop: "1px",
-                  }}
-                >
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    component="h2"
-                    color="primary"
-                  >
-                    <strong>Etudes Bibliques du Midi</strong>
-                  </Typography>
-                  <Typography
-                    gutterBottom
-                    variant="body1"
-                    style={{ textAlign: "start" }}
-                  >
-                    Cette rubrique donne accès aux résumés (non officels) de
-                    différentes études bibliques réalisées au sein d'
-                    <a target="_blank" href="https://impactcentrechretien.com/">
-                      Impact Centre Chrétien
-                    </a>{" "}
-                    Bruxelles pendant les heures de midi.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  onClick={() => history.push("/ebm")}
-                >
-                  Voir les résumés
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card style={{}}>
-              <CardActionArea>
-                <CardContent
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    backgroundColor: "#f0f0f0",
-                    paddingBottom: "0px",
-                    paddingTop: "1px",
-                  }}
-                >
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    component="h2"
-                    color="primary"
-                  >
-                    <strong>Cultes ICC</strong>
-                  </Typography>
-                  <Typography
-                    gutterBottom
-                    variant="body1"
-                    style={{ textAlign: "start" }}
-                  >
-                    Dans cette rubrique, vous trouverez les résumés (non
-                    officels) de différentes prédications qui ont eu lieu lors
-                    des cultes dominicaux au sein de la famille{" "}
-                    <a target="_blank" href="https://impactcentrechretien.com/">
-                      Impact Centre Chrétien
-                    </a>
-                    .
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  onClick={() => history.push("/cultes")}
-                >
-                  Voir les résumés
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card style={{}}>
-              <CardActionArea>
-                <CardContent
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    backgroundColor: "#f0f0f0",
-                    paddingBottom: "0px",
-                    paddingTop: "1px",
-                  }}
-                >
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    component="h2"
-                    color="primary"
-                  >
-                    <strong>Autres résumés</strong>
-                  </Typography>
-                  <Typography
-                    gutterBottom
-                    variant="body1"
-                    style={{ textAlign: "start" }}
-                  >
-                    Vous retrouverez ici d'autres résumés (non officels) de
-                    différentes exhortations au sein de la famille{" "}
-                    <a target="_blank" href="https://impactcentrechretien.com/">
-                      Impact Centre Chrétien
-                    </a>
-                    . Exemple: Méga Impact conférence, ...
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  onClick={() => history.push("/autres")}
-                >
-                  Voir les résumés
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        </Grid>
-      </Hidden> */}
-      {/* Full screnn
-       */}{" "}
       <Hidden smDown>
         <div style={{ color: "white", fontSize: 15 }}>
           Plateforme d'Edification Biblique
         </div>
+        {(isUser || isAdmin) && (
+          <div style={{ color: "white" }}> Bienvenue {firstname}</div>
+        )}
+
+        {isAdmin && (
+          <div style={{ color: "white", paddingBottom: "5px" }}>
+            <br />
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              onClick={() => history.push("/edit")}
+              style={{ marginRight: "10px" }}
+            >
+              New Resume
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              onClick={() => history.push("/orateurs")}
+            >
+              Liste Orateurs
+            </Button>
+          </div>
+        )}
         <Grid
           container
           spacing={1}
           style={{
             paddingTop: "5rem",
-            paddingLeft: "15rem",
-            paddingRight: "15rem",
+            paddingLeft: "5%",
+            paddingRight: "5%",
           }}
         >
           <Grid item xs={12} md={4}>
@@ -225,6 +80,7 @@ const Dashboard = () => {
                     backgroundColor: "#f0f0f0",
                     paddingBottom: "0px",
                     paddingTop: "1px",
+                    minHeight: "200px",
                   }}
                 >
                   <Typography
@@ -372,22 +228,20 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Autres résumés</strong>
+                    <strong>Mes statistiques</strong>
                   </Typography>
                   <Typography
                     gutterBottom
                     variant="body1"
                     style={{ textAlign: "start" }}
                   >
-                    Vous retrouverez ici d'autres résumés (non officels) de
-                    différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Impact conférence, ...
+                    Voir mes statistiques et mes notes
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
                 <Button variant="contained" size="small" color="primary">
-                  Voir les résumés
+                  Acéder
                 </Button>
               </CardActions>
             </Card>
@@ -420,15 +274,18 @@ const Dashboard = () => {
                     variant="body1"
                     style={{ textAlign: "start" }}
                   >
-                    Vous retrouverez ici d'autres résumés (non officels) de
-                    différentes exhortations au sein de la famille Impact Centre
-                    Chrétien. Exemple: Méga Impact conférence, ...
+                    Section Admin
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
-                  Voir les résumés
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  disabled
+                >
+                  Accéder
                 </Button>
               </CardActions>
             </Card>
@@ -441,7 +298,7 @@ const Dashboard = () => {
         )}
 
         {isAdmin && (
-          <div style={{ color: "white" }}>
+          <div style={{ color: "white", paddingBottom: "5px" }}>
             <br />
             <Button
               variant="contained"
@@ -463,193 +320,32 @@ const Dashboard = () => {
           </div>
         )}
 
-        <Accordion
-          square
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
-        >
-          <AccordionSummary
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-            style={{
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "white" : backg,
-            }}
-          >
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="h2"
-              color="primary"
-            >
-              <strong style={{ color: dark ? "" : "white" }}>
-                Etudes Bibliques du Midi
-              </strong>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "#F0F0F0" : backg,
-            }}
-          >
-            <div>
-              <Typography
-                gutterBottom
-                variant="body1"
-                style={{
-                  textAlign: "start",
+        <DashboardItem
+          itemPanel="panel1"
+          itemTitle="Etudes Bibliques du Midi"
+          content31={content11}
+          content32={content12}
+          itemButton="Voir les résumés"
+          itemPath="/ebm"
+        />
 
-                  color: dark ? backg : "white",
-                }}
-              >
-                Cette rubrique donne accès aux résumés (non officels) de
-                différentes études bibliques réalisées au sein d'
-                <a
-                  style={{ color: dark ? backg : "yellow" }}
-                  target="_blank"
-                  href="https://impactcentrechretien.com/"
-                >
-                  Impact Centre Chrétien
-                </a>{" "}
-                Bruxelles pendant les heures de midi.
-              </Typography>
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                onClick={() => history.push("/ebm")}
-              >
-                Voir les résumés
-              </Button>
-            </div>
-          </AccordionDetails>
-        </Accordion>
+        <DashboardItem
+          itemPanel="panel2"
+          itemTitle="Cultes ICC"
+          content31={content21}
+          content32={content22}
+          itemButton="Voir les résumés"
+          itemPath="/cultes"
+        />
 
-        <Accordion
-          square
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
-        >
-          <AccordionSummary
-            aria-controls="panel2d-content"
-            id="panel2d-header"
-            style={{
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "white" : backg,
-            }}
-          >
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="h2"
-              color="primary"
-            >
-              <strong style={{ color: dark ? "" : "white" }}>Cultes ICC</strong>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              //backgroundColor: "#f0f0f0",
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "#F0F0F0" : backg,
-            }}
-          >
-            <div>
-              <Typography
-                gutterBottom
-                variant="body1"
-                style={{ textAlign: "start", color: dark ? backg : "white" }}
-              >
-                Dans cette rubrique, vous trouverez les résumés (non officels)
-                de différentes prédications qui ont eu lieu lors des cultes
-                dominicaux au sein de la famille{" "}
-                <a
-                  style={{ color: dark ? backg : "yellow" }}
-                  target="_blank"
-                  href="https://impactcentrechretien.com/"
-                >
-                  Impact Centre Chrétien
-                </a>
-                .
-              </Typography>
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                onClick={() => history.push("/cultes")}
-              >
-                Voir les résumés
-              </Button>
-            </div>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          square
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
-        >
-          <AccordionSummary
-            aria-controls="panel3d-content"
-            id="panel3d-header"
-            style={{
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "white" : backg,
-            }}
-          >
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="h2"
-              color="primary"
-            >
-              <strong style={{ color: dark ? "" : "white" }}>
-                Autres Résumés
-              </strong>
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              //backgroundColor: "#f0f0f0",
-              border: dark ? "" : "1px solid white",
-              backgroundColor: dark ? "#F0F0F0" : backg,
-            }}
-          >
-            <div>
-              <Typography
-                gutterBottom
-                variant="body1"
-                style={{ textAlign: "start", color: dark ? backg : "white" }}
-              >
-                Vous retrouverez ici d'autres résumés (non officels) de
-                différentes exhortations au sein de la famille{" "}
-                <a
-                  style={{ color: dark ? backg : "yellow" }}
-                  target="_blank"
-                  href="https://impactcentrechretien.com/"
-                >
-                  Impact Centre Chrétien
-                </a>
-                . Exemple: Méga Impact conférence, ...
-              </Typography>
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                onClick={() => history.push("/cultes")}
-              >
-                Voir les résumés
-              </Button>
-            </div>
-          </AccordionDetails>
-        </Accordion>
+        <DashboardItem
+          itemPanel="panel3"
+          itemTitle="Autres Résumés"
+          content31={content31}
+          content32={content32}
+          itemButton="Voir les résumés"
+          itemPath="/autres"
+        />
       </Hidden>
     </>
   );

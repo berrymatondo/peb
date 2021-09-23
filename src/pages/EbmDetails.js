@@ -18,6 +18,7 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import { MdMarkunread } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
 import { UserContext } from "./USerContext";
+import jsPDF from "jspdf";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/";
 //const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
@@ -56,6 +57,7 @@ const EbmDetails = () => {
   };
 
   useEffect(() => {
+    console.log("Chargerrrrrrrrrrrrrrrrrr");
     getAllCours();
   }, [reload]);
 
@@ -89,6 +91,26 @@ const EbmDetails = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const generatePDF = () => {
+    //var doc = new jsPDF("landscape", "px", "a4", "false");
+    var doc = new jsPDF("p", "pt", "a4");
+    var doc2 = document.querySelector("#content");
+    doc2.style.fontSize = "11px";
+    doc2.style.padding = "10px";
+    doc2.style.height = "842px";
+    doc2.style.width = "595px";
+
+    //doc.addPage();
+    //doc.text(120, 410, { el });
+    doc.html(doc2, {
+      callback: function (pdf) {
+        pdf.save("mypdf.pdf");
+      },
+    });
+    setReload(!reload);
+    // doc.save();
   };
 
   return (
@@ -133,27 +155,35 @@ const EbmDetails = () => {
         </div>
         {resume && (
           <div onClick={() => handleTag()}>
-            {resume.tag ? (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <MdDrafts
-                  style={{
-                    fontSize: "30px",
-                    color: "green",
-                    marginRight: "5px",
-                  }}
-                />
-                Lu
-              </div>
-            ) : userId ? (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <MdMarkunread
-                  style={{ fontSize: "30px", color: "red", marginRight: "5px" }}
-                />
-                Non lu
-              </div>
-            ) : (
+            {
+              resume.tag ? (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <MdDrafts
+                    style={{
+                      fontSize: "30px",
+                      color: "green",
+                      marginRight: "5px",
+                    }}
+                  />
+                  Lu
+                </div>
+              ) : userId ? (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <MdMarkunread
+                    style={{
+                      fontSize: "30px",
+                      color: "red",
+                      marginRight: "5px",
+                    }}
+                  />
+                  Non lu
+                </div>
+              ) : (
+                ""
+              ) /* (
               <MdMarkunread style={{ fontSize: "30px", color: "gray" }} />
-            )}
+            ) */
+            }
           </div>
         )}
 
@@ -180,9 +210,10 @@ const EbmDetails = () => {
             Télécharger pdf
           </Button> */
           <div
-            onClick={() => {
+            /* onClick={() => {
               print("a", "jsx-template");
-            }}
+            }} */
+            onClick={generatePDF}
             style={{ marginTop: "5px", marginRight: "5px", cursor: "pointer" }}
           >
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -276,7 +307,14 @@ const EbmDetails = () => {
                 paragraph
                 align="left"
                 // style={{ fontSize: "12pt" }}
-                id={"jsx-template"}
+                // id={"jsx-template"}
+                /* style={{
+                  width: "595px",
+                  height: "842px",
+                  padding: "10px",
+                  fontSize: "13px",
+                }} */
+                id="content"
                 //  style={{ paddingRight: "50%", paddingLeft: "10px" }}
               >
                 {renderHTML(resume.message)}

@@ -10,6 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import fileDownload from "js-file-download";
 
 import moment from "moment";
 import "date-fns";
@@ -19,6 +20,8 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import { FileDownload } from "@mui/icons-material";
+import jsPDF from "jspdf";
 
 //const baseUrl = "http://localhost:9050/peb/resumes";
 //const baseUrl = "https://pebback.herokuapp.com/peb/resumes";
@@ -47,6 +50,7 @@ const TextEdit = () => {
   const [texte, setTexte] = useState("");
   const [reference, setReference] = useState("");
   const [orateurId, setOrateurId] = useState("");
+  const [file, setFile] = useState("");
 
   const [selectedDate, setSelectedDate] = React.useState(
     new Date()
@@ -55,6 +59,75 @@ const TextEdit = () => {
   const [newDate, setNewDate] = useState(
     moment(selectedDate).format("DD/MM/YYYY")
   );
+
+  const handlefile = (e) => {
+    console.log(e.target.files);
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
+  const generatePDF = (el) => {
+    //var doc = new jsPDF("landscape", "px", "a4", "false");
+    var doc = new jsPDF("p", "pt", "a4");
+    //doc.addPage();
+    //doc.text(120, 410, { el });
+    doc.html(document.querySelector("#content1"), {
+      callback: function (pdf) {
+        pdf.save("mypdf.pdf");
+      },
+    });
+    // doc.save();
+  };
+
+  /*   const handleUpload = (e) => {
+    // console.log();
+    let formdata = new FormData(file);
+    formdata.append("file", file);
+
+    axios({
+      url: "http://localhost:9050/upload",
+      method: "POST",
+      headers: { authorization: "youy token" },
+      data: formdata,
+    }).then(
+      (res) => {
+        console.log("SUCCESSSSSS");
+      },
+      (err) => {
+        console.log("KOOOOO");
+      }
+    );
+  }; */
+
+  const handleUpload = (e) => {
+    console.log("fillllleeee=", file);
+    const data = new FormData();
+    data.append("file", file);
+    console.warn(file);
+    let url = "http://localhost:9050/upload";
+
+    axios
+      .post(url, data, {
+        // receive two parameter endpoint url ,form data
+      })
+      .then((res) => {
+        // then print response status
+        console.warn(res);
+      });
+  };
+
+  const downloadFile = (e) => {
+    let url = "http://localhost:9050/download/3";
+
+    axios({
+      url: url,
+      method: "GET",
+      responseType: "blob",
+    }).then((res) => {
+      console.log("response", res.data);
+      FileDownload(res.data, "download");
+    });
+  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -240,6 +313,10 @@ const TextEdit = () => {
         </Grid>
 
         <br />
+        <div id="content">
+          <h1>Test</h1>
+          <p>Ceci est un vrai test</p>
+        </div>
         <div>
           <CKEditor
             editor={ClassicEditor}
@@ -259,12 +336,40 @@ const TextEdit = () => {
         </div>
       </form>
 
+      <h2>Télécharger un fichier</h2>
+      <div>
+        <input type="file" name="file" onChange={(e) => handlefile(e)} />
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={(e) => handleUpload(e)}
+        >
+          Upload file
+        </Button>
+      </div>
+      <div>
+        <a href={`http://localhost:9050/download/3`}>TELECHARG</a>
+        <br />
+        <Button color="secondary" onClick={(dataHtml) => generatePDF(dataHtml)}>
+          Télécharger Fichier
+        </Button>
+      </div>
       <br />
       <br />
       <div>{data} </div>
       <br />
       <br />
-      <div>{dataHtml} </div>
+      <div
+        id="content1"
+        style={{
+          width: "595px",
+          height: "842px",
+          padding: "10px",
+          fontSize: "5px",
+        }}
+      >
+        {dataHtml}{" "}
+      </div>
       <br />
       <br />
     </Paper>

@@ -7,19 +7,22 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import MarkunreadIcon from "@material-ui/icons/Markunread";
 import { MdMarkunread } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
+import { BiHide } from "react-icons/bi";
+import { AiFillEye } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "./USerContext";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
 const baseUrl = process.env.REACT_APP_API_RESUMES;
 const baseUrlTag = process.env.REACT_APP_API_TAGS;
+const baseUrPublish = process.env.REACT_APP_API_PUBLISH;
 
 const Ebm = () => {
   const history = useHistory();
   const [resumes, setResumes] = useState([]);
   const [reload, setReload] = useState(false);
   const location = useLocation();
-  const { userId } = useContext(UserContext);
+  const { userId, isAdmin } = useContext(UserContext);
 
   // Get all cours
   const getAllCours = async () => {
@@ -77,11 +80,45 @@ const Ebm = () => {
   };
 
   const handleTag = (ligne) => {
-    console.log("Resume to tag:=", ligne);
-    console.log("USer to tag:=", userId);
+    // console.log("Resume to tag:=", ligne);
+    //  console.log("USer to tag:=", userId);
     if (userId) {
       console.log("urladd:=", baseUrlTag);
       addTag(userId, ligne);
+    }
+  };
+
+  //Update status publish
+  const updatePublish = async (ligne) => {
+    await axios
+      .post(
+        // "http://localhost:9050/peb/resumes/tag/add",
+        baseUrPublish,
+        {
+          resId: ligne.resumeId,
+          status: !ligne.published,
+        } /* ,
+          {
+            headers: { Authorization: `Bearer ${location.state.token}` },
+          } */
+      )
+      .then((res) => {
+        setReload(!reload);
+        //setOpenPopup(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handlePublish = (ligne) => {
+    console.log("Resume to publish:=", ligne);
+    if (isAdmin) {
+      console.log("urladd:=", baseUrlTag);
+      console.log("resId: ", ligne.resumeId);
+      console.log("status: ", !ligne.published);
+
+      updatePublish(ligne);
     }
   };
 
@@ -162,6 +199,7 @@ const Ebm = () => {
           {
             title: "Lu ?",
             field: "message",
+            hidden: userId ? false : true,
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
@@ -208,6 +246,38 @@ const Ebm = () => {
               </div>
             ),
           },
+          {
+            title: "Publié ?",
+            field: "published",
+            hidden: isAdmin ? false : true,
+            cellStyle: {
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              cursor: "pointer",
+            },
+            render: (row) => (
+              /*               <div onClick={() => history.push("/ebmdetails")}>
+               */ <div onClick={() => handlePublish(row)}>
+                {row.published ? (
+                  <AiFillEye
+                    style={{
+                      fontSize: "30px",
+                      color: "green",
+                      marginRight: "5px",
+                    }}
+                  />
+                ) : (
+                  <BiHide
+                    style={{
+                      fontSize: "30px",
+                      color: "red",
+                      marginRight: "5px",
+                    }}
+                  />
+                )}
+              </div>
+            ),
+          },
         ]}
         data={resumes}
         options={{
@@ -221,6 +291,7 @@ const Ebm = () => {
             pageSizeOptions: [5, 10],
             paginationPosition: "left",
           },
+          columnsButton: true,
         }}
         title="EBM"
       />

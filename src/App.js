@@ -30,6 +30,7 @@ function App() {
   const [backg, setBackg] = useState("#10035c");
   const [forg, setForg] = useState("#FFFFFF");
   const [dark, setDark] = useState(true);
+  const [expanded, setExpanded] = React.useState("panel1");
 
   useEffect(() => {
     console.log("backg:=", backg);
@@ -66,6 +67,8 @@ function App() {
           setForg,
           dark,
           setDark,
+          expanded,
+          setExpanded,
         }}
       >
         <Layout>
