@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { UserContext } from "./pages/USerContext";
 import { UseDarkMode } from "./components/UseDarkMode";
+import ResumeEdit from "./pages/ResumeEdit";
 
 function App() {
   const [user, setUser] = useState("");
@@ -81,6 +82,9 @@ function App() {
             </Route>
             <Route path="/ebmdetails/:resumeId">
               <EbmDetails />
+            </Route>
+            <Route path="/resumeedit/:resumeId">
+              <ResumeEdit />
             </Route>
             <Route path="/cultes">
               <Cultes />

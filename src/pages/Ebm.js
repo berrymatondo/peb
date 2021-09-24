@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import MaterialTable from "material-table";
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -9,6 +9,7 @@ import { MdMarkunread } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
+import { MdEdit } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "./USerContext";
 
@@ -246,8 +247,23 @@ const Ebm = () => {
               </div>
             ),
           },
+          /*           {
+            title: "Editer",
+            field: "texte",
+            cellStyle: {
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              cursor: "pointer",
+            },
+            render: (row) => (
+              <MdEdit
+                style={{ fontSize: "25px", color: "orange" }}
+                onClick={() => history.push("/resumeedit/" + row.resumeId)}
+              />
+            ),
+          }, */
           {
-            title: "Publié ?",
+            title: "Actions",
             field: "published",
             hidden: isAdmin ? false : true,
             cellStyle: {
@@ -257,7 +273,17 @@ const Ebm = () => {
             },
             render: (row) => (
               /*               <div onClick={() => history.push("/ebmdetails")}>
-               */ <div onClick={() => handlePublish(row)}>
+               */
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  // justifyContent: "space-between",
+                }}
+                onClick={() => handlePublish(row)}
+              >
+                {/*                 <div onClick={() => handlePublish(row)}>
+                 */}{" "}
                 {row.published ? (
                   <AiFillEye
                     style={{
@@ -275,6 +301,16 @@ const Ebm = () => {
                     }}
                   />
                 )}
+                {/*                 </div>
+                 */}{" "}
+                <MdEdit
+                  style={{
+                    fontSize: "25px",
+                    color: "orange",
+                    marginLeft: "30px",
+                  }}
+                  onClick={() => history.push("/resumeedit/" + row.resumeId)}
+                />
               </div>
             ),
           },
