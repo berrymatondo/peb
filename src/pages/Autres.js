@@ -163,7 +163,7 @@ const Autres = () => {
               paddingBottom: "0px",
               cursor: "pointer",
             },
-            defaultSort: "asc",
+            defaultSort: "desc",
             render: (row) => (
               <div onClick={() => history.push("/ebmdetails/" + row.resumeId)}>
                 <Typography variant="small">
