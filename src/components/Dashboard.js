@@ -8,11 +8,12 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../pages/USerContext";
 import DashboardItem from "./DashboardItem";
+import axios from "axios";
 
 const Dashboard = () => {
   const history = useHistory();
@@ -26,6 +27,39 @@ const Dashboard = () => {
   const content11 =
     "Cette rubrique donne accès aux résumés (non officels) de différentes études bibliques réalisées au sein d'";
   const content12 = "Bruxelles pendant les heures de midi.";
+
+  const baseUrl = process.env.REACT_APP_API_TOTAL;
+
+  const [totalEbm, setTotalEbm] = useState(0);
+  const [totalCulte, setTotalCulte] = useState(0);
+  const [totalAutre, setTotalAutre] = useState(0);
+
+  // Get all cours
+  const getAllCours = async () => {
+    /*  if (userId) {
+        myBaseUrl = baseUrl + "ebm" + `/${userId}`;
+      } else {
+      } */
+
+    await axios
+      .get(baseUrl)
+      .then((res) => {
+        // console.log("Resumes:=", res.data);
+        setTotalEbm(res.data.totalEbm);
+        setTotalCulte(res.data.totalCulte);
+        setTotalAutre(res.data.totalAutre);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    // console.log(location.pathname); // result: '/secondpage'
+    // console.log(location.search); // result: '?query=abc'
+    //console.log(location.state.token); // result: 'some_value'
+    getAllCours();
+  }, []);
 
   return (
     <>
@@ -154,7 +188,7 @@ const Dashboard = () => {
                   variant="contained"
                   size="small"
                   color="primary"
-                  onClick={() => history.push("/cultes")}
+                  onClick={() => history.push("/culte")}
                 >
                   Voir les résumés
                 </Button>
@@ -200,7 +234,7 @@ const Dashboard = () => {
                   variant="contained"
                   size="small"
                   color="primary"
-                  onClick={() => history.push("/autres")}
+                  onClick={() => history.push("/autre")}
                 >
                   Voir les résumés
                 </Button>
@@ -327,6 +361,7 @@ const Dashboard = () => {
           content32={content12}
           itemButton="Voir les résumés"
           itemPath="/ebm"
+          total={totalEbm}
         />
 
         <DashboardItem
@@ -335,7 +370,8 @@ const Dashboard = () => {
           content31={content21}
           content32={content22}
           itemButton="Voir les résumés"
-          itemPath="/cultes"
+          itemPath="/culte"
+          total={totalCulte}
         />
 
         <DashboardItem
@@ -344,7 +380,8 @@ const Dashboard = () => {
           content31={content31}
           content32={content32}
           itemButton="Voir les résumés"
-          itemPath="/autres"
+          itemPath="/autre"
+          total={totalAutre}
         />
       </Hidden>
     </>

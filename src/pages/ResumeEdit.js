@@ -40,7 +40,7 @@ const ResumeEdit = () => {
   const [data, setData] = useState("");
   const [dataHtml, setDataHtml] = useState("");
   const history = useHistory();
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const { resumeId } = useParams();
 
   const [theme, setTheme] = useState("");
@@ -54,6 +54,7 @@ const ResumeEdit = () => {
   const [message, setMessage] = useState("");
   const [orateurId, setOrateurId] = useState("");
   const [file, setFile] = useState("");
+  const [published, setPublished] = useState("");
 
   const [selectedDate, setSelectedDate] = React.useState(
     new Date()
@@ -149,6 +150,14 @@ const ResumeEdit = () => {
         setTexte(res.data.texte);
         setTheme(res.data.theme);
         setMessage(res.data.message);
+        setPublished(res.data.published);
+        setDate(
+          res.data.date.substring(4, 6) +
+            "/" +
+            res.data.date.substring(6, 8) +
+            "/" +
+            res.data.date.substring(0, 4)
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -181,13 +190,15 @@ const ResumeEdit = () => {
     await axios
       .put(baseUrl + "update", {
         resumeId: resumeId,
-        date: moment(date).format("DD/MM/YYYY"),
+        //date: moment(date).format("DD/MM/YYYY"),
+        date: moment(date).format("YYYYMMDD"),
         theme: theme,
         message: data,
         category: cat,
         texte: texte,
         reference: reference,
         orateurId: orateur,
+        published: published,
       })
       .then((res) => {
         history.push("/" + cat);

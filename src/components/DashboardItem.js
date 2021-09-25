@@ -35,7 +35,7 @@ const DashboardItem = (props) => {
         >
           <Typography gutterBottom variant="h6" component="h2" color="primary">
             <strong style={{ color: dark ? "" : "white" }}>
-              {props.itemTitle}
+              {props.itemTitle} ({props.total})
             </strong>
           </Typography>
         </AccordionSummary>

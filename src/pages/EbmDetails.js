@@ -37,7 +37,7 @@ const EbmDetails = () => {
       await axios
         .get(baseUrl + userId + "/" + resumeId)
         .then((res) => {
-          // console.log("Resume:=", res.data);
+          console.log("Resume:=", res.data);
           setResume(res.data);
         })
         .catch((error) => {
@@ -47,7 +47,7 @@ const EbmDetails = () => {
       await axios
         .get(baseUrl + resumeId)
         .then((res) => {
-          // console.log("Resume:=", res.data);
+          console.log("Resume:=", res.data);
           setResume(res.data);
         })
         .catch((error) => {
@@ -236,7 +236,14 @@ const EbmDetails = () => {
           }}
         >
           <div style={{ color: "white" }}>
-            <span style={{ paddingLeft: "20px" }}>{resume.date}</span> <br />
+            <span style={{ paddingLeft: "20px" }}>
+              {resume.date.substring(6, 8) +
+                "/" +
+                resume.date.substring(4, 6) +
+                "/" +
+                resume.date.substring(0, 4)}
+            </span>{" "}
+            <br />
             <div>
               <strong>
                 {resume.firstname} {resume.lastname}

@@ -175,7 +175,8 @@ const TextEdit = () => {
   const addResume = async () => {
     await axios
       .post(baseUrl + "add", {
-        date: moment(date).format("DD/MM/YYYY"),
+        //  date: moment(date).format("DD/MM/YYYY"),
+        date: moment(date).format("YYYYMMDD"),
         theme: theme,
         message: data,
         category: cat,
@@ -197,9 +198,15 @@ const TextEdit = () => {
 
   return (
     <Paper
-      style={{ display: "flex", flexDirection: "column", padding: "10rem" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+      }}
     >
-      <div>
+      <h2>Ajouter un résumé</h2>
+      {/*       <div>
         <Preview id={"jsx-template"}> {dataHtml}</Preview>
         <button
           onClick={() => {
@@ -211,7 +218,7 @@ const TextEdit = () => {
           print
         </button>
       </div>
-
+ */}
       <form
         className={classes.root}
         noValidate

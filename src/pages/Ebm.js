@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import MaterialTable from "material-table";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Tooltip } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -157,15 +157,22 @@ const Ebm = () => {
         columns={[
           {
             title: "Jour/Orateur",
-            field: "lastname",
+            field: "date",
             cellStyle: {
               paddingTop: "0px",
               paddingBottom: "0px",
               cursor: "pointer",
             },
+            defaultSort: "asc",
             render: (row) => (
               <div onClick={() => history.push("/ebmdetails/" + row.resumeId)}>
-                <Typography variant="small">{row.date}</Typography>{" "}
+                <Typography variant="small">
+                  {row.date.substring(6, 8) +
+                    "/" +
+                    row.date.substring(4, 6) +
+                    "/" +
+                    row.date.substring(0, 4)}
+                </Typography>{" "}
                 <Typography color="primary">
                   {row.firstname} {row.lastname}
                 </Typography>{" "}
@@ -280,7 +287,6 @@ const Ebm = () => {
                   alignItems: "center",
                   // justifyContent: "space-between",
                 }}
-                onClick={() => handlePublish(row)}
               >
                 {/*                 <div onClick={() => handlePublish(row)}>
                  */}{" "}
@@ -291,6 +297,7 @@ const Ebm = () => {
                       color: "green",
                       marginRight: "5px",
                     }}
+                    onClick={() => handlePublish(row)}
                   />
                 ) : (
                   <BiHide
@@ -299,9 +306,12 @@ const Ebm = () => {
                       color: "red",
                       marginRight: "5px",
                     }}
+                    onClick={() => handlePublish(row)}
                   />
                 )}
                 {/*                 </div>
+                 */}{" "}
+                {/*                 <Tooltip title="Delete">
                  */}{" "}
                 <MdEdit
                   style={{
@@ -311,6 +321,8 @@ const Ebm = () => {
                   }}
                   onClick={() => history.push("/resumeedit/" + row.resumeId)}
                 />
+                {/*                 </Tooltip>
+                 */}{" "}
               </div>
             ),
           },

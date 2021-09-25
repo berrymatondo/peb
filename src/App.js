@@ -86,10 +86,10 @@ function App() {
             <Route path="/resumeedit/:resumeId">
               <ResumeEdit />
             </Route>
-            <Route path="/cultes">
+            <Route path="/culte">
               <Cultes />
             </Route>
-            <Route path="/autres">
+            <Route path="/autre">
               <Autres />
             </Route>
             <Route path="/editor">
