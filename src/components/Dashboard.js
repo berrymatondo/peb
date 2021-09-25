@@ -123,7 +123,7 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Etudes Bibliques du Midi</strong>
+                    <strong>Etudes Bibliques du Midi</strong> ({totalEbm})
                   </Typography>
                   <Typography
                     gutterBottom
@@ -169,7 +169,7 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Cultes ICC</strong>
+                    <strong>Cultes ICC</strong> ({totalCulte})
                   </Typography>
                   <Typography
                     gutterBottom
@@ -216,7 +216,7 @@ const Dashboard = () => {
                     component="h2"
                     color="primary"
                   >
-                    <strong>Autres résumés</strong>
+                    <strong>Autres résumés</strong> ({totalAutre})
                   </Typography>
                   <Typography
                     gutterBottom
@@ -274,7 +274,12 @@ const Dashboard = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button variant="contained" size="small" color="primary">
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  disabled
+                >
                   Acéder
                 </Button>
               </CardActions>
