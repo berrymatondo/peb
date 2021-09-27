@@ -13,6 +13,7 @@ import { UserContext } from "../pages/USerContext";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { BsMoon } from "react-icons/bs";
 import { FiSun } from "react-icons/fi";
+import Cookies from "js-cookie";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,13 +77,18 @@ const Navbar = () => {
   };
 
   const handleConnexion = () => {
-    // console.log("User:=", user);
     if (user) {
       setUser("");
       setTok("");
       setIsUser(false);
       setIsAdmin(false);
       setUserId("");
+      Cookies.remove("user");
+      Cookies.remove("firstname");
+      Cookies.remove("userId");
+      Cookies.remove("token");
+      Cookies.remove("isUser");
+      Cookies.remove("isAdmin");
       history.push("/login");
     } else {
       history.push("/signup");
@@ -131,13 +137,6 @@ const Navbar = () => {
                   {firstname}
                 </span>
               ) : (
-                /*   <div
-                  // variant="outlined"
-                  style={{ color: "white", marginRight: "0.2rem" }}
-                  onClick={() => history.push("/login")}
-                >
-                  Se Connecter
-                </div> */
                 <div
                   style={{
                     display: "flex",
@@ -151,28 +150,21 @@ const Navbar = () => {
                 </div>
               )}
 
-              {
-                user && (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      cursor: "pointer",
-                    }}
-                    onClick={handleConnexion}
-                    // onClick={() => history.push("/login")}
-                  >
-                    <ExitToAppIcon style={{ color: "red" }} />
-                    {/*                     <span style={{ marginLeft: "0.2rem" }}>Déconnexion</span>
-                     */}{" "}
-                  </div>
-                )
-                /* ) : (
-                <span style={{ marginLeft: "10px" }} onClick={handleConnexion}>
-                  S'inscrire
-                </span>
-              ) */
-              }
+              {user && (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={handleConnexion}
+                  // onClick={() => history.push("/login")}
+                >
+                  <ExitToAppIcon style={{ color: "red" }} />
+                  {/*                     <span style={{ marginLeft: "0.2rem" }}>Déconnexion</span>
+                   */}{" "}
+                </div>
+              )}
             </div>
           </Hidden>
           <Hidden smDown>
@@ -210,39 +202,6 @@ const Navbar = () => {
           </Hidden>
         </Toolbar>
       </AppBar>
-      {/*       <Paper
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          color: "#3F51B5",
-          marginTop: "0.75rem",
-        }}
-      >
-        <Typography
-          variant="h6"
-          onClick={() => history.push("/ebm")}
-          className={location.pathname === "/ebm" ? classes.active : null}
-          style={{ padding: "0px 20px", cursor: "pointer" }}
-        >
-          EBM
-        </Typography>
-        <Typography
-          variant="h6"
-          onClick={() => history.push("/cultes")}
-          className={location.pathname === "/cultes" ? classes.active : null}
-          style={{ padding: "0px 20px", cursor: "pointer" }}
-        >
-          Cultes
-        </Typography>
-        <Typography
-          variant="h6"
-          onClick={() => history.push("/autres")}
-          className={location.pathname === "/autres" ? classes.active : null}
-          style={{ padding: "0px 20px", cursor: "pointer" }}
-        >
-          Autres
-        </Typography>
-      </Paper> */}
     </div>
   );
 };

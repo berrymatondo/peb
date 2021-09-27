@@ -15,6 +15,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./USerContext";
 import { makeStyles } from "@material-ui/core";
+import Cookies from "js-cookie";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,15 +103,19 @@ const Login = () => {
 
   const auth = async () => {
     await axios
-      .post(baseUrl, {
-        username: username,
-        password: password,
-      })
+      .post(
+        baseUrl,
+        {
+          username: username,
+          password: password,
+        }
+        //  { withCredentials: "include" }
+      )
       .then((res) => {
         // Set the Usercontext
         console.log(res.data);
         setTok(res.data.jwtToken);
-        setTok(res.data.jwtToken);
+        //     setTok(res.data.jwtToken);
         setUser(username);
         setRoles(res.data.roles);
         setUserId(res.data.appUserId);
@@ -119,12 +124,31 @@ const Login = () => {
           for (let i = 0; i < res.data.roles.length; i++) {
             if (res.data.roles[i] === "ROLE_USER") {
               setIsUser(true);
+              Cookies.set("isUser", true);
             }
             if (res.data.roles[i] === "ROLE_ADMIN") {
               setIsAdmin(true);
+              Cookies.set("isAdmin", true);
             }
           }
         }
+
+        /*         res.cookie("jwtoken", res.data.jwtToken, {
+          expires: new Date(new Date().getTime() + 15 * 1000),
+          httpOnly: true,
+        }); */
+
+        // Save Cookies
+        Cookies.set("user", username);
+        Cookies.set("token", res.data.jwtToken);
+        Cookies.set("userId", res.data.appUserId);
+        Cookies.set("firstname", res.data.firstname);
+        /*           Cookies.set("user", "userId", {
+          sameSite: "strict",
+          path: "/",
+          expires: new Date(new Date().getTime() + 15 * 1000),
+          httpOnly: true,
+        });  */
 
         history.push({
           pathname: "/",
