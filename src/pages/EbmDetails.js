@@ -1,27 +1,16 @@
-import {
-  FormControl,
-  FormControlLabel,
-  Hidden,
-  Paper,
-  Switch,
-  Typography,
-} from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import renderHTML from "react-html-parser";
 import { useHistory } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Preview, print } from "react-html2pdf";
-import { Button } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import { MdMarkunread } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
 import { UserContext } from "./USerContext";
 import jsPDF from "jspdf";
 
-//const baseUrl = "http://localhost:9050/peb/resumes/";
-//const baseUrl = "http://pebback.herokuapp.com/peb/resumes/";
 const baseUrl = process.env.REACT_APP_API_RESUMES_ADD;
 const baseUrlTag = process.env.REACT_APP_API_TAGS;
 
@@ -29,7 +18,7 @@ const EbmDetails = () => {
   const history = useHistory();
   const { resumeId } = useParams();
   const [resume, setResume] = useState();
-  const [reload, setReload] = useState(false);
+  //const [reload, setReload] = useState(false);
   const { userId, dark, backg } = useContext(UserContext);
 
   const getAllCours = async () => {
@@ -57,9 +46,9 @@ const EbmDetails = () => {
   };
 
   useEffect(() => {
-    console.log("Chargerrrrrrrrrrrrrrrrrr");
     getAllCours();
-  }, [reload]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleTag = () => {
     // console.log("Resume to tag:=", resumeId);
@@ -85,7 +74,7 @@ const EbmDetails = () => {
           } */
       )
       .then((res) => {
-        setReload(!reload);
+        // setReload(!reload);
         //setOpenPopup(false);
       })
       .catch((error) => {
@@ -109,7 +98,7 @@ const EbmDetails = () => {
         pdf.save("mypdf.pdf");
       },
     });
-    setReload(!reload);
+    //   setReload(!reload);
     // doc.save();
   };
 
@@ -290,7 +279,7 @@ const EbmDetails = () => {
           <Paper
             style={{
               padding: "5px",
-              border: "1px solid black",
+              //border: "1px solid black",
               alignSelf: "center",
               borderRadius: "5px",
               // color: "white",

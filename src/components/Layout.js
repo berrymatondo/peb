@@ -1,7 +1,6 @@
-import { Grid, Hidden } from "@material-ui/core";
+import { Hidden } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import React from "react";
-import Dashboard from "./Dashboard";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 

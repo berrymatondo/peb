@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Button, makeStyles, TextField, Paper } from "@material-ui/core";
-import { useLocation } from "react-router-dom";
+import { UserContext } from "../USerContext";
 
-//const baseUrl = "http://localhost:9050/peb/orateurs";
-//const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 const baseUrl = process.env.REACT_APP_API_ORATEURS;
 
 const useStyles = makeStyles((theme) => ({
@@ -35,13 +33,8 @@ const AddOrateur = ({ setOpenPopup }) => {
   const classes = useStyles();
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
-  const location = useLocation();
+  const { tok } = useContext(UserContext);
 
-  /*   const [promotionStatus, setPromotionStatus] = useState(false);
-  const [titleError, setTitleError] = useState(false);
-  const [descriptionError, setDescriptionError] = useState(false);
-  const [year, setYear] = useState("");
- */
   // Add new ortaeur
   const addOrateur = async () => {
     await axios
@@ -50,10 +43,10 @@ const AddOrateur = ({ setOpenPopup }) => {
         {
           lastname: lastname,
           firstname: firstname,
-        } /* ,
+        },
         {
-          headers: { Authorization: `Bearer ${location.state.token}` },
-        } */
+          headers: { Authorization: `Bearer ${tok}` },
+        }
       )
       .then((res) => {
         setOpenPopup(false);

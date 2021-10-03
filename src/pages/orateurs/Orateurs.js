@@ -8,13 +8,8 @@ import Popupp from "../Popupp";
 import AddOrateur from "./AddOrateur";
 import EditOrateur from "./EditOrateur";
 import DeleteOrateur from "./DeleteOrateur";
-import { useLocation } from "react-router-dom";
 import { UserContext } from "../USerContext";
 
-// Les colonnes de la table
-
-//const baseUrl = "http://localhost:9050/peb/orateurs";
-//const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 const baseUrl = process.env.REACT_APP_API_ORATEURS;
 
 const Orateurs = () => {
@@ -24,8 +19,7 @@ const Orateurs = () => {
   const [title, setTitle] = useState("");
   const [typact, setTypact] = useState("");
   const [selectedOrateur, setSelectedOrateur] = useState("");
-  const location = useLocation();
-  const { user, setUser, tok, setTok } = useContext(UserContext);
+  const { tok, isAdmin } = useContext(UserContext);
 
   const reloadAndClose = () => {
     setOpenPopup(false);
@@ -35,11 +29,10 @@ const Orateurs = () => {
   // Get all orateurs
   const getOrateurs = async () => {
     await axios
-      .get(
-        baseUrl /* , {
-        headers: { Authorization: `Bearer ${location.state.token}` },
-      } */
-      )
+      .get(baseUrl, {
+        // headers: { Authorization: `Bearer ${location.state.token}` },
+        //  headers: { Authorization: `Bearer ${tok}` },
+      })
       .then((res) => {
         console.log("Orateurs:=", res.data);
         setOrateurs(res.data);
@@ -50,8 +43,8 @@ const Orateurs = () => {
   };
 
   useEffect(() => {
-    //console.log("TOKEN orateurs:=", location.state.token);
     getOrateurs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
   const columns = [
@@ -70,31 +63,6 @@ const Orateurs = () => {
 
       cellStyle: { paddingTop: "0px", paddingBottom: "0px" },
     },
-    /*     {
-      title: "Etudiants",
-      field: "students",
-      sorting: false,
-      filtering: false,
-      render: (row) => (
-        <li>
-          <Link
-            to={"/studentslist/" + row.promotionId + "/" + row.promotionYear}
-            style={{ textDecoration: "none" }}
-          >
-            Etudiants ({row.studentPromotions.length})
-          </Link>
-        </li>
-      ),
-
-      cellStyle: {
-        color: "blue",
-        paddingTop: "0px",
-        paddingBottom: "0px",
-        textDecoration: "none",
-        listStyle: "none",
-      },
-    },
- */
   ];
 
   return (
@@ -117,6 +85,7 @@ const Orateurs = () => {
             icon: () => (
               <AddCircleIcon style={{ color: "#3F51B5", fontSize: 40 }} />
             ),
+            hidden: isAdmin ? false : true,
             tooltip: "Créer un orateur",
             isFreeAction: true,
             onClick: () => {
@@ -129,6 +98,7 @@ const Orateurs = () => {
           {
             icon: () => <EditIcon style={{ color: "orange" }} />,
             tooltip: "Modifier un orateur",
+            hidden: isAdmin ? false : true,
             onClick: (event, rowData) => {
               setTitle("Modifier un orateur ");
               setTypact("M");
@@ -139,6 +109,7 @@ const Orateurs = () => {
           {
             icon: () => <DeleteIcon style={{ color: "red" }} />,
             tooltip: "Supprimer un orateur",
+            hidden: isAdmin ? false : true,
             onClick: (event, rowData) => {
               console.log("rowData", rowData);
               setTitle("Supprimer un orateur ");

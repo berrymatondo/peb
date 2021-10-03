@@ -4,13 +4,13 @@ import {
   Grid,
   Paper,
   TextField,
-  Checkbox,
+  //Checkbox,
   Button,
   Typography,
   Link,
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+//import FormControlLabel from "@material-ui/core/FormControlLabel";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "./USerContext";
@@ -67,19 +67,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState(false);
   const {
-    user,
+    //  user,
     setUser,
-    tok,
+    //  tok,
     setTok,
-    roles,
+    //  roles,
     setRoles,
-    isUser,
+    //    isUser,
     setIsUser,
-    isAdmin,
+    //   isAdmin,
     setIsAdmin,
-    userId,
+    //    userId,
     setUserId,
-    firstname,
+    // firstname,
     setFirstname,
   } = useContext(UserContext);
 

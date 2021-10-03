@@ -12,7 +12,6 @@ import ResumeEdit from "../pages/ResumeEdit";
 import SignUp from "../pages/SignUp";
 import Dashboard from "./Dashboard";
 import TextEdit from "./TextEdit";
-import TextEditor from "./TextEditor";
 
 const Routes = () => {
   return (
@@ -35,9 +34,9 @@ const Routes = () => {
       <Route path="/autre">
         <Autres />
       </Route>
-      <Route path="/editor">
+      {/* <Route path="/editor">
         <TextEditor />
-      </Route>
+      </Route> */}
       <Route path="/orateurs">
         <Orateurs />
       </Route>

@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import renderHTML from "react-html-parser";
-import { Preview, print } from "react-html2pdf";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Button, Grid, Paper, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import fileDownload from "js-file-download";
 
 import moment from "moment";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { FileDownload } from "@mui/icons-material";
+//import { FileDownload } from "@mui/icons-material";
 import jsPDF from "jspdf";
 
 //const baseUrl = "http://localhost:9050/peb/resumes";
@@ -38,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const ResumeEdit = () => {
   const [data, setData] = useState("");
-  const [dataHtml, setDataHtml] = useState("");
+  // const [dataHtml, setDataHtml] = useState("");
   const history = useHistory();
   const [date, setDate] = useState();
   const { resumeId } = useParams();
@@ -46,13 +42,12 @@ const ResumeEdit = () => {
   const [theme, setTheme] = useState("");
   const classes = useStyles();
   const [cat, setCat] = React.useState("");
-  const [resume, setResume] = useState("");
+  //const [resume, setResume] = useState("");
   const [orateur, setOrateur] = useState("");
   const [orateurs, setOrateurs] = useState([]);
   const [texte, setTexte] = useState("");
   const [reference, setReference] = useState("");
   const [message, setMessage] = useState("");
-  const [orateurId, setOrateurId] = useState("");
   const [file, setFile] = useState("");
   const [published, setPublished] = useState("");
 
@@ -100,19 +95,6 @@ const ResumeEdit = () => {
       });
   };
 
-  const downloadFile = (e) => {
-    let url = "http://localhost:9050/download/3";
-
-    axios({
-      url: url,
-      method: "GET",
-      responseType: "blob",
-    }).then((res) => {
-      console.log("response", res.data);
-      FileDownload(res.data, "download");
-    });
-  };
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setDate(date);
@@ -124,7 +106,7 @@ const ResumeEdit = () => {
 
   const handleChange = (e, editor) => {
     setData(editor.getData());
-    setDataHtml(renderHTML(editor.getData()));
+    // setDataHtml(renderHTML(editor.getData()));
   };
 
   const handleSubmit = (e) => {
@@ -143,7 +125,7 @@ const ResumeEdit = () => {
       //.get(`https://pebback.herokuapp.com/peb/orateurs`)
       .then((res) => {
         console.log("Resumé trouvé", res.data);
-        setResume(res.data);
+        //setResume(res.data);
         setOrateur(res.data.orateurId);
         setCat(res.data.category);
         setReference(res.data.reference);
@@ -183,6 +165,7 @@ const ResumeEdit = () => {
     console.log("Edition");
     getResume();
     getAllOrateurs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Add new ortaeur

@@ -2,25 +2,23 @@ import React, { useState, useEffect } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import renderHTML from "react-html-parser";
-import { Preview, print } from "react-html2pdf";
-import { useHistory, useLocation } from "react-router-dom";
+//import { Preview, print } from "react-html2pdf";
+import { useHistory } from "react-router-dom";
 import { Button, Grid, Paper, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import fileDownload from "js-file-download";
 
 import moment from "moment";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
+  //KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { FileDownload } from "@mui/icons-material";
 import jsPDF from "jspdf";
 
 //const baseUrl = "http://localhost:9050/peb/resumes";
@@ -49,7 +47,7 @@ const TextEdit = () => {
   const [orateurs, setOrateurs] = useState([]);
   const [texte, setTexte] = useState("");
   const [reference, setReference] = useState("");
-  const [orateurId, setOrateurId] = useState("");
+  //const [orateurId, setOrateurId] = useState("");
   const [file, setFile] = useState("");
 
   const [selectedDate, setSelectedDate] = React.useState(
@@ -114,19 +112,6 @@ const TextEdit = () => {
         // then print response status
         console.warn(res);
       });
-  };
-
-  const downloadFile = (e) => {
-    let url = "http://localhost:9050/download/3";
-
-    axios({
-      url: url,
-      method: "GET",
-      responseType: "blob",
-    }).then((res) => {
-      console.log("response", res.data);
-      FileDownload(res.data, "download");
-    });
   };
 
   const handleDateChange = (date) => {

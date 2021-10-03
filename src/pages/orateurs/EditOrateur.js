@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Button, makeStyles, TextField, Paper } from "@material-ui/core";
+import { UserContext } from "../USerContext";
 
-//const baseUrl = "http://localhost:9050/peb/orateurs";
-//const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 const baseUrl = process.env.REACT_APP_API_ORATEURS;
 
 const useStyles = makeStyles((theme) => ({
@@ -35,18 +34,20 @@ const EditOrateur = (props) => {
   const orateurId = props.orateur.orateurId;
   const [lastname, setLastname] = useState(props.orateur.lastname);
   const [firstname, setFirstname] = useState(props.orateur.firstname);
-  /*   const [titleError, setTitleError] = useState(false);
-  const [descriptionError, setDescriptionError] = useState(false);
-  const [year, setYear] = useState(props.promo.promotionYear); */
+  const { tok } = useContext(UserContext);
 
   // Add new cours
   const editOrateur = async () => {
     await axios
-      .put(baseUrl + "/update", {
-        orateurId: orateurId,
-        lastname: lastname,
-        firstname: firstname,
-      })
+      .put(
+        baseUrl + "update",
+        {
+          orateurId: orateurId,
+          lastname: lastname,
+          firstname: firstname,
+        },
+        { headers: { Authorization: `Bearer ${tok}` } }
+      )
       .then((res) => {
         props.setOpenPopup(false);
       })
@@ -58,17 +59,6 @@ const EditOrateur = (props) => {
   // Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    /*     setTitleError(false);
-    setDescriptionError(false);
-
-    if (title.length === "") {
-      setTitleError(true);
-    }
-
-    if (year === "") {
-      setDescriptionError(true);
-    } */
 
     if (lastname) {
       editOrateur();

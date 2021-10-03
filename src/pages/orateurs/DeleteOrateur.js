@@ -1,16 +1,19 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../USerContext";
 
-//const baseUrl = "http://localhost:9050/peb/orateurs";
-//const baseUrl = "https://pebback.herokuapp.com/peb/orateurs";
 const baseUrl = process.env.REACT_APP_API_ORATEURS;
 
 const DeleteOrateur = (props) => {
+  const { tok } = useContext(UserContext);
+
   // Delete cours
   const deleteOrateur = async () => {
     await axios
-      .delete(baseUrl + "/delete/" + props.orateur.orateurId)
+      .delete(baseUrl + "delete/" + props.orateur.orateurId, {
+        headers: { Authorization: `Bearer ${tok}` },
+      })
       .then((res) => {
         props.setOpenPopup(false);
       })

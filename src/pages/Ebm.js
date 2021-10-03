@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import MaterialTable from "material-table";
-import { Button, Typography, Tooltip } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import MarkunreadIcon from "@material-ui/icons/Markunread";
+//import MarkunreadIcon from "@material-ui/icons/Markunread";
 import { MdMarkunread } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import { AiFillEye } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import { UserContext } from "./USerContext";
 
 //const baseUrl = "http://localhost:9050/peb/resumes/category/";
@@ -22,7 +22,7 @@ const Ebm = () => {
   const history = useHistory();
   const [resumes, setResumes] = useState([]);
   const [reload, setReload] = useState(false);
-  const location = useLocation();
+  //const location = useLocation();
   const { userId, isAdmin } = useContext(UserContext);
 
   // Get all cours
@@ -30,8 +30,7 @@ const Ebm = () => {
     let myBaseUrl = baseUrl + "ebm";
 
     if (userId) {
-      myBaseUrl = baseUrl + "ebm" + `/${userId}`;
-    } else {
+      myBaseUrl = baseUrl + `ebm/${userId}`;
     }
 
     await axios
@@ -55,6 +54,7 @@ const Ebm = () => {
     // console.log(location.search); // result: '?query=abc'
     //console.log(location.state.token); // result: 'some_value'
     getAllCours();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
   //Tag resume

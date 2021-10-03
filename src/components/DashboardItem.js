@@ -58,6 +58,7 @@ const DashboardItem = (props) => {
               <a
                 style={{ color: dark ? backg : "yellow" }}
                 target="_blank"
+                rel="opener noreferrer"
                 href="https://impactcentrechretien.com/"
               >
                 Impact Centre Chrétien

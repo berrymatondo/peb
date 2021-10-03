@@ -59,7 +59,7 @@ const Dashboard = () => {
     // console.log(location.search); // result: '?query=abc'
     //console.log(location.state.token); // result: 'some_value'
     getAllCours();
-  }, []);
+  });
 
   return (
     <>
